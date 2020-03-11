@@ -625,7 +625,7 @@ Returns message in JSON format
 
 -   **URL**
 
-    /category/:id
+    /task/:id
 
 -   **Method:**
 
@@ -651,7 +651,7 @@ Returns message in JSON format
         **Content:**
         ```json
         {
-            "message": "Category deleted"
+        "message": "Success deleting task 3"
         }
         ```
 
@@ -661,11 +661,11 @@ Returns message in JSON format
         **Content:**
         ```json
         {
-            "status": 404,
-            "errors": [
-                "Category not found"
-            ],
-            "message": "Not Found"
+        "status": 404,
+        "errors": [
+            "Task with id 2 not found"
+        ],
+        "message": "Not found"
         }
         ```
 
@@ -680,19 +680,7 @@ Returns message in JSON format
             "message": "Authentication failed"
         }
 
-        ```
-        -   **Code:** 401 UNAUTHORIZED <br />
-        **Content:**
-        ```json
-        {
-            "status": 401,
-            "errors": [
-                "You are not authorized to do this action"
-            ],
-            "message": "Unautorized"
-        }
-        ```
-## **Update Category**
+## **Update Task**
 
 Returns updated category data in JSON format
 
@@ -716,7 +704,7 @@ Returns updated category data in JSON format
 
       **Required:**
 
-      `None`
+      `title = [string]`
 
 -   **Success Response:**
 
@@ -724,11 +712,12 @@ Returns updated category data in JSON format
         **Content:**
         ```json
         {
-            "id": 10,
-            "name": "abc",
-            "UserId": 1,
-            "createdAt": "2020-03-10T11:13:57.287Z",
-            "updatedAt": "2020-03-10T12:29:05.015Z"
+            "id": 8,
+            "title": "Berhasil update",
+            "CategoryId": 10,
+            "createdAt": "2020-03-11T10:03:15.811Z",
+            "updatedAt": "2020-03-11T10:10:02.344Z",
+            "UserId": 1
         }
         ```
 
@@ -757,15 +746,4 @@ Returns updated category data in JSON format
             "message": "Authentication failed"
         }
 
-        ```
-        -   **Code:** 401 UNAUTHORIZED <br />
-        **Content:**
-        ```json
-        {
-            "status": 401,
-            "errors": [
-                "You are not authorized to do this action"
-            ],
-            "message": "Unautorized"
-        }
         ```
