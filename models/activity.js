@@ -4,8 +4,14 @@ module.exports = (sequelize, DataTypes) => {
 
   Activity.init({
     title: DataTypes.STRING,
-    category: DataTypes.STRING
+    category: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (User, options) => {
+        User.category = 'backlog'
+      }
+    },
     sequelize,
     modelName: 'Activity'
   })
