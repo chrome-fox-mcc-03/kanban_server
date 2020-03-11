@@ -40,6 +40,8 @@ class UserController {
 
                 const access_token = getToken (payload)
                 res.status(201).json({
+                    access_name : newUser.name,
+                    access_avatarUrl : newUser.avatarUrl, 
                     access_token : access_token
                 })
             })
@@ -76,6 +78,8 @@ class UserController {
                         }
                         const access_token = getToken (payload)
                         res.status(200).json({
+                            access_name : response.name,
+                            access_avatarUrl : response.avatarUrl, 
                             access_token : access_token
                         })
                     } else {

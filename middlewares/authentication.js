@@ -20,6 +20,7 @@ module.exports = function (req , res, next) {
                         message : 'You are not authenticated'
                     })
                 }
+                return null
             })
 
             .catch ((err)=>{
