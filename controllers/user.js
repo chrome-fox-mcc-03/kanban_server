@@ -4,12 +4,15 @@ const { comparePassword } = require('../helpers/bcrypt');
 
 class UserController {
     static signup(req, res, next) {
+        console.log('masuk sign up');
+        console.log(req.body)
         User.findOne({
             where: {
                 email: req.body.email
             }
         })
             .then(userFound => {
+                console.log(userFound)
                 if (!userFound) {
                     User.create({
                         name: req.body.name,
@@ -22,6 +25,7 @@ class UserController {
                             res.status(201).json({ access_token })
                         })
                         .catch(err => {
+                            console.log('user create error', err);
                             res.status(500).json({ err })
                         })
                 } else {
@@ -29,6 +33,7 @@ class UserController {
                 }
             })
             .catch(err => {
+                console.log('user create catch error', err);
                 res.status(500).json({ err })
             })
     }
