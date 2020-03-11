@@ -52,7 +52,8 @@ class ControllerTask {
 
     static update (req,res,next) {
         const id = req.params.id
-        const { title,category,UserId } = req.body
+        const { title,category } = req.body
+        const UserId = req.decoded.id
         Task.update({
             title,
             category,
