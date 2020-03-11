@@ -4,7 +4,7 @@ Base url: <http://localhost:3000>
 
 ## **Register**
 
-Return json access token after user register
+Return data of new user in JSON format after registration success
 
 -   **URL**
 
