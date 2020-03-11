@@ -1,11 +1,34 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  class Task extends sequelize.Sequelize.Models{}
+  class Task extends sequelize.Sequelize.Model{}
   Task.init({
-    title: DataTypes.STRING,
-    category: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        len: {
+          args: [2, 20],
+          msg: "Title must be between 2 to 20 characters"
+        }
+      }
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   },{
+    validate: {
+      emptyString() {
+        if (!this.title || !this.category) {
+          throw new Error('Value Must Be Filled')
+        }
+      }
+    },
     sequelize,
     modelName: "Task"
   })

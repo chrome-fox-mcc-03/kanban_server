@@ -23,6 +23,6 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    return queryInterface.removeConstraint('Users','unique_constraint_name')
+    return queryInterface.removeConstraint('Users','unique_constraint_email')
   }
 };
