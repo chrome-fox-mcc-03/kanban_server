@@ -3,11 +3,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const express = require('express');
+const morgan = require('morgan');
+const router = require('./routes');
 
 const app = express();
 
 // app.use(cors());
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.listen(process.env.NODE_ENV, () => console.log(`this app running on port ${process.env.PORT}`));
+app.use(router);
+
+app.listen(process.env.PORT, () => console.log(`this app running on port ${process.env.PORT}`));
