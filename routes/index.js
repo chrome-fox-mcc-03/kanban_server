@@ -10,7 +10,7 @@ router.post('/signup', UserController.signup);
 // })
 router.post('/signin', UserController.signin);
 
-router.use(authentication);
+// router.use(authentication);
 
 router.use('/activities', activitiesRoutes);
 
