@@ -107,7 +107,7 @@
   *google*
 ---
 
-  Returns message of success with status 200.
+  Returns token and username with status 200.
 
 * **URL**
 
@@ -123,8 +123,8 @@
 
 * **Success Response:**
 
-  * **Code:** 201 <br />
-    **Content:** `{ message: 'google signin successful' }`
+  * **Code:** 200 <br />
+    **Content:** `{ token }`
  
 * **Error Response:**
 
@@ -152,7 +152,7 @@
   ```
 ---
 
-## Groups
+## Projects
 
 ---
 
@@ -206,7 +206,7 @@
 *create*
 ---
 
-  Returns create a project for a user. Status code 200.
+  Returns message of success. Status code 201.
 
 * **URL**
 
@@ -226,13 +226,13 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** `{ projects }`
  
 * **Error Response:**
 
   * **Code:** 401 BAD REQUEST <br />
-    **Content:** `{ message: 'Group name cannot be empty' }`
+    **Content:** `{ message: 'Project name cannot be empty' }`
 
 * **Sample Call:**
 
@@ -329,7 +329,7 @@
 * **Data Params**
 
     * `UserId=[integer]`
-    * `GroupId=[integer]`
+    * `ProjectId=[integer]`
 
 * **Success Response:**
 
@@ -707,6 +707,52 @@
         description: ...,
         GroupId: ...
       }
+    })
+      .then(({data}) => {
+        ...
+      })
+      .catch(err => {
+        ...
+      })
+  ```
+---
+
+## Category
+
+---
+
+*findAll*
+---
+
+  Returns all categories in database. Status code 200.
+
+* **URL**
+
+  /categories
+
+* **Method:**
+
+  `GET`
+
+* **Data Params**
+
+  none
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ categories }`
+ 
+* **Error Response:**
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+
+* **Sample Call:**
+
+  ```javascript
+    Axios({
+      url: 'http://localhost:3000/categories',
+      method : "GET"
     })
       .then(({data}) => {
         ...
