@@ -17,12 +17,13 @@ class ControllerTask {
     }
 
     static addTask (req, res, next) {
-        const { title,category } = req.body
+        const { title,category,description } = req.body
         const UserId = req.decoded.id
         Task.create({
             title,
             category,
-            UserId
+            UserId,
+            description
         })
             .then(task => {
                 res.status(201).json(task)
@@ -52,12 +53,13 @@ class ControllerTask {
 
     static update (req,res,next) {
         const id = req.params.id
-        const { title,category } = req.body
+        const { title,category,description } = req.body
         const UserId = req.decoded.id
         Task.update({
             title,
             category,
-            UserId
+            UserId,
+            description
         }, {
             where: {
                 id

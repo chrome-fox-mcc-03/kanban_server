@@ -2,7 +2,7 @@
   "development": {
     "username": "naufalyunan",
     "password": "naufalyunan",
-    "database": "kanbanology",
+    "database": "db_kanban",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
