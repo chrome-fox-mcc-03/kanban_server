@@ -34,7 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     GroupId: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    }
   }, {
     sequelize
   })

@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     GroupId: {
       type: DataTypes.INTEGER
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   }, {
     sequelize

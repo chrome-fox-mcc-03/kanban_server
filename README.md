@@ -301,6 +301,8 @@
 
     `token=[string]`
 
+    `GroupId=[integer]`
+
 * **Success Response:**
 
   * **Code:** 201 <br />
@@ -308,7 +310,7 @@
 
   ```javascript
     {
-      message: "Success create new KanbaN"
+      message: "Success create new Task"
     }
   ```
  
@@ -351,6 +353,8 @@
     **Required:**
 
     `token=[string]`
+
+    `GroupId=[integer]`
 
 * **Success Response:**
 
@@ -406,6 +410,8 @@
 
     `token=[string]`
 
+    `GroupId=[integer]`
+
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -413,7 +419,7 @@
 
   ```javascript
     {
-      message: "Success update KanbaN"
+      message: "Success update Task"
     }
   ```
  
@@ -432,7 +438,7 @@
   
 * **URL**
 
-  `http://localhost:3000/task:id`
+  `http://localhost:3000/task/:id`
 
 * **Method:**
 
@@ -454,6 +460,8 @@
 
     `token=[string]`
 
+    `GroupId=[integer]`
+
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -461,16 +469,11 @@
 
   ```javascript
     {
-      message: "Success delete KanbaN"
+      message: "Success delete Task"
     }
   ```
  
 * **Error Response:**
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ message: "Title cannot be empty" }`
-
-  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ message: "Internal Server Error" }`

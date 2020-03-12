@@ -22,15 +22,6 @@ module.exports = {
       })
       .catch(next)
   },
-  isMember(req, res, next) {
-    const { id } = req.decoded
-
-    GroupUser.findOne({
-      where: {
-        
-      }
-    })
-  },
   isInvited(req, res, next) {
     const { id } = req.params
     const { email } = req.body
@@ -60,7 +51,8 @@ module.exports = {
             where: {
               GroupId,
               UserId
-            }
+            },
+            include: [ Group]
           })
         } else {
           throw {
@@ -73,12 +65,30 @@ module.exports = {
         if(data) {
           next({
             status: 400,
-            message: 'User already in group'
+            message: `User already in group ${data.Group.group_name}`
           })
         } else {
           next()
         }
       })
       .catch(next)
+  },
+  isMember(req, res, next) {
+    const { id } = req.decoded
+    const GroupId = req.headers.groupid
+
+    GroupUser.findOne({
+      where: { id, GroupId }
+    })
+      .then(data => {
+        if(data) {
+          next()
+        } else {
+          next({
+            status: 401,
+            message: "you doesn't have access to this group"
+          })
+        }
+      })
   }
 }
