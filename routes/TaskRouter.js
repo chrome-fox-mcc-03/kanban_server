@@ -7,6 +7,7 @@ router.use(authentication);
 
 router.get('/', TaskController.showTasks) ;
 router.get('/:id', TaskController.showTaskById) ;
+router.get('/:category', TaskController.showTasksByCategory) ;
 router.post('/', TaskController.createTask) ;
 router.put('/:id', authorization, TaskController.editTask) ;
 router.delete('/:id', authorization, TaskController.deleteTask) ;

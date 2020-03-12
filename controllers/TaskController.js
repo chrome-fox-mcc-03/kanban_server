@@ -19,6 +19,28 @@ class TaskController {
             })
 
     }
+
+
+    static showTasksByCategory (req ,res, next){
+        Task.findAll({
+            where: {
+                UserId : req.decoded.id,
+                category : req.params.category
+            }
+        })
+            .then((response)=>{
+                res.status(200).json({
+                    data : response
+                })
+            })
+
+            .catch((err)=>{
+                next(err)
+            })
+
+    }
+
+
     static createTask (req,res,next) {
 
         let newTask = {
@@ -71,7 +93,7 @@ class TaskController {
             if(response){
                 let updateTask = {
                     title : req.body.title,
-                    category : response.category,
+                    category : req.body.category,
                     UserId : req.decoded.id
                 }
 
