@@ -39,6 +39,7 @@ class UserController {
     }
 
     static signin(req, res, next) {
+        console.log('>>>> SIGN IN <<<<');
         User.findOne({
             where: {
                 email: req.body.email
@@ -48,6 +49,7 @@ class UserController {
                 if (user) {
                     const passwordMatched = comparePassword(req.body.password, user.password)
                     if (passwordMatched) {
+                        console.log('>>>> SIGN IN SUCCESS <<<<');
                         const payload = { id: user.id, name: user.name, email: user.email };
                         const access_token = generateToken(payload);
                         res.status(200).json({ access_token })

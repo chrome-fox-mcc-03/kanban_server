@@ -15,7 +15,14 @@ class ActivityController {
     }
 
     static fetchActivities(req, res, next) {
-        Activity.findAll({})
+        console.log('>>>>>>> F E T C H <<<<<<<<');
+        console.log(req.currentUserId);
+        
+        Activity.findAll({
+            where: {
+                UserId: req.currentUserId
+            }
+        })
             .then(activities => {
                 res.status(200).json(activities)
             })
@@ -42,6 +49,23 @@ class ActivityController {
             })
             .then(() => {
                 res.status(200).json({ deletedActivity })
+            })
+            .catch(err => {
+                res.status(500).json(err)
+            })
+    }
+
+    static move(req, res, next) {
+        Activity.update({
+            category: req.body.new_category
+        }, {
+            where: {
+                id: req.params.id
+            },
+            returning: true
+        })
+            .then(updatedActivity => {
+                res.status(200).json(updatedActivity)
             })
             .catch(err => {
                 res.status(500).json(err)
