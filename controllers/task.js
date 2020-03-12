@@ -46,6 +46,7 @@ class TaskController {
     }
 
     static update (req, res, next){
+        console.log('EDITAN NIH DI SERVERRR')
         let {title, description, CategoryId} = req.body
         Task
             .update({title, description, CategoryId}, {
