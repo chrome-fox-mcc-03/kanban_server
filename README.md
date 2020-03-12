@@ -28,7 +28,16 @@ Registering a new user for our app.
 
   - **Code:** 201 Created <br />
     **Content:**
-    `javascript { "status": 201, "data": { "id": 3, "email": "thethirdemail@gmail.com", "username": "TheGreatThird" } }`
+    ```javascript
+    {
+      "status": 201,
+      "data": {
+          "id": 5,
+          "email": "thetfourthemail@gmail.com",
+          "username": "TheGreatFourth"
+      }
+    }
+    ```
 
 - **Error Response:**
 
