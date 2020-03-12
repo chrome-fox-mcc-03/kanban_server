@@ -12,8 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     background_id: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
+      type: DataTypes.STRING,
     },
     creator_id: DataTypes.INTEGER
   }, {

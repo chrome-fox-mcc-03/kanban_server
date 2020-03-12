@@ -1,4 +1,7 @@
 'use strict';
+
+const { hashPassword } = require('../helper/bcrypt')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends sequelize.Sequelize.Model{}
   User.init({
@@ -45,7 +48,15 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate: (user, options) => {
+        user.password = hashPassword(user.password)
+      }
+    },
+    sequelize,
+    modelName: 'User'
+  });
   User.associate = function(models) {
     User.belongsToMany(models.Board, {
       through: models.UserBoard,

@@ -22,10 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     creator_id: DataTypes.INTEGER,
     board_id: DataTypes.INTEGER,
     color: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: 'gray'
     },
     category: DataTypes.STRING
-  }, {});
+  }, {
+    sequelize,
+    modelName: 'Task'
+  });
   Task.associate = function(models) {
     Task.belongsTo(models.Board, {
       foreignKey: 'board_id'
