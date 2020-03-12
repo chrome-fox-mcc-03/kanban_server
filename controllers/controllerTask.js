@@ -1,4 +1,4 @@
-const { Task } = require('./../models')
+const { Task, User } = require('./../models')
 
 class ControllerTask {
     static getTasks (req, res, next) {
@@ -6,7 +6,8 @@ class ControllerTask {
         Task.findAll({
             where: {
                 UserId
-            }
+            },
+            include: [User]
         })
             .then(tasks => {
                 res.status(200).json(tasks)
@@ -35,7 +36,9 @@ class ControllerTask {
 
     static getById (req, res, next) {
         const id = req.params.id
-        Task.findByPk(id)
+        Task.findByPk(id, {
+            include: [User]
+        })
             .then(task => {
                 if (!task) {
                     const error = {
