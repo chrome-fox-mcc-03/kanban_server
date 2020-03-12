@@ -3,7 +3,10 @@ module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model;
 
   class Task extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Task.belongsTo(models.User);
+      Task.belongsTo(models.Category);
+    }
   }
 
   Task.init(
