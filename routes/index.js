@@ -8,6 +8,7 @@ const { adminAuth } = require('./../middlewares/authentication')
 
 router.post('/users', ControllerUser.addUser)
 router.post('/login', Controller.login)
+router.post('/loginGoogle', Controller.loginGoogle)
 router.use(authentication)
 router.use('/tasks', routerTask)
 router.use(adminAuth)
