@@ -32,12 +32,11 @@ class TaskController {
   }
 
   static editTask(req, res, next) {
-    let { title, description, CategoryId } = req.body;
+    let { title, description } = req.body;
     Task.update(
       {
         title,
-        description,
-        CategoryId
+        description
       },
       {
         where: {
@@ -139,7 +138,7 @@ class TaskController {
           if (response.CategoryId === 4) {
             next({
               status: 400,
-              msg: "Task cannot be moved from when it is already in done"
+              msg: "Task cannot be moved from when it is already in Done category"
             });
           } else {
             next({
