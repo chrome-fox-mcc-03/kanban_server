@@ -1,4 +1,4 @@
-const { Project, User, Member, sequelize } = require('../models')
+const { Project, User, Member, Task, sequelize } = require('../models')
 
 module.exports = 
   class ProjectController {
@@ -12,7 +12,8 @@ module.exports =
             where: {
               id: currentUserId
             }
-          }
+          },
+          Task
         ]
       })
         .then(projects => res.status(200).json({ projects }))
@@ -35,8 +36,16 @@ module.exports =
             })
           })
       })
-        .then()
-      
-      
+        .then(() => res.status(201).json({ message: 'Create project successful' }))
+        .catch(next)
+    }
+
+    static findByPk (req, res, next) {
+      const { id } = req.params
+      Project.findByPk(id, {
+        include: [User, Task]
+      }) 
+        .then(project => res.status(200).json({ project }))
+        .catch(next)
     }
   }

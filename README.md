@@ -282,7 +282,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ projects }`
+    **Content:** `{ project }`
  
 * **Error Response:**
 
@@ -333,7 +333,7 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** `{ projects }`
  
 * **Error Response:**
@@ -471,6 +471,7 @@
 * **Headers:**
 
   * token
+  * GroupId
 
 * **Data Params**
 
@@ -569,7 +570,7 @@
 
 * **Data params:**
 
-    * `tittle=[string]`
+    * `name=[string]`
     * `description=[string]`
     * `GroupId=[integer]`
 

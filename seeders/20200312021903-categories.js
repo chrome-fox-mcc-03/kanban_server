@@ -12,6 +12,11 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+   return queryInterface.bulkInsert('People', [
+    {
+      name: 'Backlog'
+    }
+], {})
   },
 
   down: (queryInterface, Sequelize) => {
