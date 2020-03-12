@@ -26,7 +26,6 @@ module.exports = {
 				})
 				.catch(next)
 		} catch (err) {
-			console.log(err);
 			next(err);
 		}
 	}

@@ -1,4 +1,4 @@
-const { Project, User, ProjectUser } = require('../models');
+const { Project, User, ProjectUser, Card } = require('../models');
 
 class ProjectController {
 	static create (req, res, next) {
@@ -121,7 +121,24 @@ class ProjectController {
 	}
 
 	static getKanban (req, res, next) {
-		
+		let ProjectId = req.params.id;
+
+		Card.findAll({
+			where: { ProjectId }
+		})
+			.then(result => {
+				let cards = {
+					'Backlog': [],
+					'Product': [], 
+					'Development': [], 
+					'Done': []
+				};
+				result.forEach(el => {
+					cards[el.status].push(el);
+				})
+				res.status(200).json(cards);
+			})
+			.catch(next)
 	}
 }
 

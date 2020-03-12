@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const ProjectController = require('../controllers/project');
 const ProjectUserController = require('../controllers/projectUser');
-const { projectAuthorization } = require('../middlewares/authorization');
+const cardRouter = require('../routes/card');
+const { kanbanAuthorization, projectAuthorization } = require('../middlewares/authorization');
 
 router.post('/', ProjectController.create);
+router.get('/:id(\\d+)/kanban', kanbanAuthorization, ProjectController.getKanban);
 
 router.use('/:id(\\d+)', projectAuthorization);
 

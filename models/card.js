@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
 		UserId: DataTypes.INTEGER,
 		ProjectId: DataTypes.INTEGER,
 		dueDate: DataTypes.DATE,
-		status: DataTypes.STRING
+		status: {
+			type: DataTypes.STRING,
+			validate: {
+				isIn: {
+					args: [['Backlog', 'Product', 'Development', 'Done']],
+					msg: 'Status not valid!'
+				}
+			}
+		}
 	}, {
 		sequelize
 	})
