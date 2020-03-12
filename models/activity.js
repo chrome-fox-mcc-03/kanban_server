@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate: (User, options) => {
-        User.category = 'backlog'
+        User.category = 'Backlog'
       }
     },
     sequelize,
