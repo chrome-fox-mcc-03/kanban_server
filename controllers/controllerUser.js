@@ -48,6 +48,29 @@ class ControllerUser {
             })
     }
 
+    static getByEmail (req, res, next) {
+        const email = req.params.email
+        User.findOne({
+            where: {
+                email
+            }
+        })
+            .then(user => {
+                if (!user) {
+                    const error = {
+                        name: "User not found"
+                    }
+                    throw error
+                } else {
+                    res.status(200).json(user)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                next(err)
+            })
+    }
+
     static update (req, res, next) {
         const id = req.params.id
         const { first_name,last_name,email,password,role } = req.body
