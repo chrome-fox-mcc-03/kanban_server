@@ -1,4 +1,4 @@
-const { Task } = require('../models');
+const { Task, Category } = require('../models');
 
 class Controller {
   static async create(req, res, next) {
@@ -52,16 +52,34 @@ class Controller {
 
   static async updateTask(req, res, next) {
     try {
-      const { title } = req.body;
-      const task = await Task.update({
-        title
-      }, {
-        where: {
-          id: req.params.id,
-        },
-        returning: true,
+      const { title, CategoryId } = req.body;
+      if (!title || !CategoryId) next({
+        status: 400,
+        message: 'All field should be filled',
       })
-      res.status(200).json(task[1][0]);
+      const category = await Category.findOne({
+        where: {
+          id: CategoryId,
+        },
+      });
+      if (category) {
+        const task = await Task.update({
+          title,
+          CategoryId,
+        }, {
+          where: {
+            id: req.params.id,
+          },
+          returning: true,
+        })
+        res.status(200).json(task[1][0]);
+      } else {
+        const error = {
+          status: 404,
+          message: `Category with id ${CategoryId} not found`,
+        };
+        next(error);
+      }
     } catch (err) {
       next(err);
     }
