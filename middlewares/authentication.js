@@ -17,14 +17,26 @@ function authentication (req, res, next){
             }
         })
         .then((userFound) => {
-            req.headers.userId = userFound.dataValues.id
-            next()
-            return null
+            if(userFound){
+                req.headers.userId = userFound.dataValues.id
+                next()
+                return null
+            }else{
+                const error = {
+                    status : 401,
+                    message : `User forbidden access!`
+                }
+                throw error
+            }
         }).catch((err) => {
             next(err)
         });
     } catch (error) {
-        
+        const err = {
+            status : 401,
+            message : 'Invalid token or not provided, access prohibited!'
+        }
+        next(err)
     }
 }
 

@@ -4,7 +4,9 @@ class TaskController {
     static fetchTask(req, res, next){
         
         Task.findAll({
-            include : User
+            where: {
+                UserId: req.headers.userId 
+            }
         })
         .then((taskFound) => {
             let task = {}
@@ -12,7 +14,7 @@ class TaskController {
             let product = []
             let development = []
             let done = []
-            console.log(taskFound);
+            // console.log(taskFound);
             for (let index = 0; index < taskFound.length; index++) {
                 if(taskFound[index].category === 'backlog'){
                     backlog.push(taskFound[index])
