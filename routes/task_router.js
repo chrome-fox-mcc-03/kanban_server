@@ -8,7 +8,7 @@ router.post('/', TaskController.create);
 router.get('/', TaskController.show);
 
 router.delete('/:id', authorization, TaskController.delete);
-router.patch('/next/:id', authorization, TaskController.next);
+router.patch('/next_category/:id', authorization, TaskController.nextCategory);
 router.patch('/back/:id', authorization, TaskController.back);
 
 

@@ -3,7 +3,7 @@ const { Task } = require('../models');
 class TaskController {
     static create(req, res, next) {
         let { title } = req.body;
-
+        
         Task.create({
             title,
             UserId: req.decoded.id
@@ -18,7 +18,7 @@ class TaskController {
 
     static show(req, res, next) {
         let { id } = req.decoded;
-
+        
         Task.findAll({
             where: {
                 UserId: id
@@ -51,7 +51,7 @@ class TaskController {
             })
     }
 
-    static next(req, res, next) {
+    static nextCategory(req, res, next) {
         let id = req.params.id;
         
         Task.findOne({

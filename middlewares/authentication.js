@@ -2,12 +2,12 @@ const { User } = require('../models');
 const { validateToken } = require('../helpers/jwt');
 
 module.exports = (req, res, next) => {
-    let token = req.headers.token;
+    let token = req.headers.token;   
     
     if (token) {
         let data = validateToken(token);
         req.decoded = data;
-
+        
         if (data.message == 'invalid signature') {
             next(data);
         } else {
