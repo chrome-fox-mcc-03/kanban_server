@@ -8,7 +8,7 @@ router.post('/register', userController.register)
 router.post('/login', userController.login)
 // router.post('/googleSignIn', userController.googleSignIn)
 
-router.user('/todo', authentication)
+router.use('/todo', authentication)
 router.post('/todo/create', todoController.create)
 router.get('/todo/read', todoController.read)
 router.patch('/todo/update/:id', authorization, todoController.update)

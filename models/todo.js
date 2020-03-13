@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate(todo, options) {
         if(!todo.description) todo.description = 'No description added.'
       }
-    }
+    },
+    sequelize
   });
   Todo.associate = function(models) {
     // associations can be defined here
