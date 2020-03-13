@@ -25,12 +25,13 @@ class Controller {
             email,
             password
         }).then(result => {
-            let data = {
+            let payload = {
                 id: result.id,
                 name: result.name,
                 email: result.email,
             }
-            res.status(200).json(data)
+            let token = genToken(payload)
+            res.status(200).json(token)
         }).catch(err => {
             next(err)
         })
