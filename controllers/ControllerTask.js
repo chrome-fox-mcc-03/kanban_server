@@ -1,6 +1,19 @@
 const { Task } = require('../models/index')
 
 class Controller {
+    static findOne (req, res, next) {
+        const idFindOne = req.params.id
+        Task.findOne({
+            where: {
+                id: idFindOne
+            }
+        })
+            .then(task => {
+                res.status(200).json(task)
+            })
+            .catch(err => next(err))
+    }
+
     static findAll (req, res, next) {
         const idRead = req.userId
         Task.findAll({
@@ -16,8 +29,9 @@ class Controller {
 
     static create(req, res, next) {
         const titleCreate = req.body.title
+        const descriptionCreate = req.body.description
         const userIdCreate = req.decoded.id
-        Task.create({title: titleCreate, UserId: userIdCreate})
+        Task.create({title: titleCreate, UserId: userIdCreate, description: descriptionCreate })
             .then(task => res.status(201).json(task))
             .catch(err =>  {
                 if (err.errors) {
@@ -41,15 +55,17 @@ class Controller {
         const idUpdate = req.params.id
         if(req.body.title) {
             const titleUpdate = req.body.title
-            Task.update({title: titleUpdate}, {
+            const descriptionUpdate = req.body.description
+            Task.update({title: titleUpdate, description: descriptionUpdate}, {
                 where: {
                     id: idUpdate
                 }
             })
                 .then(success => res.status(200).json('success'))
                 .catch(err => next(err))
-        } else {
+        } else if(req.body.category) {
             const categoryUpdate = req.body.category
+            console.log(categoryUpdate)
             Task.update({category: categoryUpdate}, {
                 where: {
                     id: idUpdate

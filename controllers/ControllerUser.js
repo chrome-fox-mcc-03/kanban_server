@@ -55,17 +55,17 @@ class Controller {
                 const access_token = generateToken({id: user.id, email: user.email})
                 res.status(201).json({id: user.id, email: user.email, access_token})
             })
-            .catch(err => console.log(err))
+            .catch(err => next(err))
     }
 
     static loginGoogle(req, res, next) {
-        const { id_token } =reg.body
-        const email = null
+        const { id_token } =req.body
+        console.log(id_token.id_token)
+        let email = null
         const password = process.env.PASSWORD_DEFAULT
-
         const Client = new OAuth2Client(process.env.CLIENT_ID)
         Client.verifyIdToken({
-            idToken: id_token,
+            idToken: id_token.id_token,
             audience: process.env.CLIENT_ID
         })
             .then(ticket => {
@@ -91,7 +91,9 @@ class Controller {
                 const access_token = generateToken({id: user.id, email: user.email})
                 res.status(201).json({id: user.id, email: user.email, access_token})
             })
-            .catch(err => next(err))
+            .catch(err => {
+                next(err)
+            })
     }
 }
 
