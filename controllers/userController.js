@@ -44,12 +44,12 @@ class UserController {
             })
           } else {
             next({
-              name: 'Invalid Email/Password '
+              name: 'Invalid Email/Password'
             })
           }
         } else {
           next({
-            name: 'Invalid Email/Password '
+            name: 'Invalid Email/Password'
           })
         }
       })
@@ -77,7 +77,6 @@ class UserController {
             if(user) {
                 return user
             } else {
-                
                 return User.create({
                     name : userData.name,
                     email : userData.email,
