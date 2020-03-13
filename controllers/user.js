@@ -64,6 +64,48 @@ class UserController {
                 res.status(500).json(err)
             })
     }
+
+    static googleSignIn(req, res, next) {
+        let obj = {}
+        const token = req.headers.token
+        const { OAuth2Client } = require('google-auth-library');
+        const client = new OAuth2Client(process.env.CLIENT_ID);
+        client.verifyIdToken({
+            idToken: token,
+            audience: process.env.CLIENT_ID
+        })
+            .then(response => {
+                console.log(response.payload.email);
+                obj.email = response.payload.email;
+                obj.name = response.payload.name;
+                return User.findOne({
+                    where: {
+                        email: obj.email
+                    }
+                })
+            })
+            .then(user => {
+                if (!user) {
+                    return User.create({
+                        name: obj.name,
+                        email: obj.email,
+                        password: process.env.DEFAULT_PASSWORD
+                    })
+                } else {
+                    return user;
+                }
+            })
+            .then(user => {
+                const payload = { id: user.id, name: user.name, email: user.email }
+                const access_token = generateToken(payload);
+                res.status(201).json({ access_token })
+                console.log('login google successsssss', access_token);
+                
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 }
 
 module.exports = UserController;

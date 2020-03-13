@@ -89,6 +89,25 @@ class ActivityController {
                 res.status(500).json(err)
             })
     }
+
+    static updateTitle(req, res, next) {
+        Activity.update({
+            title: req.body.title
+        }, {
+            where: {
+                id: req.params.id
+            },
+            returning: true
+        })
+            .then(updatedActivity => {
+                console.log(updatedActivity);
+                
+                res.status(200).json(updatedActivity)
+            })
+            .catch(err => {
+                res.status(500).json(err)
+            })
+    }
 }
 
 module.exports = ActivityController;
