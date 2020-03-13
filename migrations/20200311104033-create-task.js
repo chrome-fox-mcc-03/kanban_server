@@ -12,8 +12,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       category: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
+        type: Sequelize.STRING,
+        defaultValue: 'Backlog'
       },
       status: {
         type: Sequelize.BOOLEAN,

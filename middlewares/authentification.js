@@ -4,10 +4,8 @@ module.exports = function (req, res, next) {
     try {
         let token = req.headers.token;
         req.decoded = verify(token);
-        console.log(req.decoded);
         User.findOne({
             where: {
-                id: req.decoded.id,
                 email: req.decoded.email
             }
         })
@@ -20,6 +18,7 @@ module.exports = function (req, res, next) {
                         msg: 'Please Login First'
                     })
                 }
+                return null
             })
             .catch(next)
     } catch (error) {

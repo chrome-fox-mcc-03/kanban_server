@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     category: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     status: {
       type: DataTypes.BOOLEAN
