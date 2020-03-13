@@ -47,6 +47,31 @@ class UserController {
                 })
             })
     }
+
+    static findOne(req, res, next){
+        let { email } = req.body
+        console.log(req.body)
+        User
+            .findOne({
+                where : {
+                    email : email
+                }
+            })
+            .then(user => {
+                if(user){
+                    res.status(200).json({
+                        id: user.id,
+                        email : user.email
+                    })
+                } else {
+                    next({
+                        status: 404,
+                        message: 'User Not Found!'
+                    })
+                }
+            })
+            .catch(next)
+    }
 }
 
 module.exports = UserController

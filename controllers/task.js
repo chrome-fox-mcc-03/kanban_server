@@ -4,7 +4,7 @@ class TaskController {
     static create (req, res, next){
         let { title, description } = req.body
         let newTask = { title, description }
-        newTask.UserId = req.currentUserId
+        newTask.ProjectId = req.projectId
         Task
             .create(newTask)
             .then(task => {
@@ -14,10 +14,11 @@ class TaskController {
     }
 
     static findAll (req, res, next){
+        console.log(' ke hit kesiniiii', req.projectId)
         Task
             .findAll({
                 where: {
-                    UserId : req.currentUserId
+                    ProjectId : req.projectId
                 }, 
                 include: [
                     Category

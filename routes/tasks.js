@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const authentication = require('../middlewares/authentication')
+const authenticationProject = require('../middlewares/authenticationProject')
 const authorization = require('../middlewares/authorization')
 const TaskControllers = require('../controllers/task')
 
-router.use(authentication)
+router.use(authenticationProject)
 router.post('/', TaskControllers.create)
 router.get('/', TaskControllers.findAll)
 router.get('/:id', authorization, TaskControllers.findOne)
