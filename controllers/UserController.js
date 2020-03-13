@@ -21,7 +21,7 @@ class UserController {
                     name: response.name
                 }
                 let token = getToken(payload)
-                res.status(201).json({token})
+                res.status(201).json({token, name: response.name})
             })
             .catch(next)
     }
@@ -41,7 +41,7 @@ class UserController {
                             name: user.name
                         }
                         let token = getToken(payload)
-                        res.status(200).json({token})
+                        res.status(200).json({token, name: user.name})
                     } else {
                         next({
                             status: 401,

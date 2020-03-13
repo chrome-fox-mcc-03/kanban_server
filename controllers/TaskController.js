@@ -3,7 +3,7 @@ const { Task } = require('../models')
 class TaskController {
     static findAll(req, res, next) {
         Task.findAll({
-            order: ['id']
+            order: [['status', 'DESC']]
         })
             .then(tasks => {
                 res.status(200).json(tasks)

@@ -6,6 +6,17 @@ module.exports = (sequelize, DataTypes) => {
   Task.init({
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Title cannot empty'
+        },
+        len: {
+          args: [4],
+          msg: 'Title at least 4 charachter'
+        }
+      }
     },
     category: {
       type: DataTypes.STRING
