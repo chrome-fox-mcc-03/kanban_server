@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize
   });
   Label.associate = function(models) {
-    // associations can be defined here
     Label.belongsTo(models.Todo,{foreignKey:'TodoId'})
   };
   return Label;

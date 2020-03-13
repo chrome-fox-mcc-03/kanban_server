@@ -17,6 +17,6 @@ module.exports = {
     },
 
     decodedToken: (token) => {
-        return jwt.verify(payload,process.env.SECRET)
+        return jwt.verify(token,process.env.SECRET)
     }
 }
