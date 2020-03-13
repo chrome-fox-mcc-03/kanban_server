@@ -1,10 +1,7 @@
 module.exports = function(err, req, res, next) {
     if(err.name) {
         switch (err.name) {
-            case value:
-                
-                break;
-        
+
             default:
                 let msg = {
                     msg: 'Bad Request'
@@ -20,6 +17,10 @@ module.exports = function(err, req, res, next) {
                 break;
         
             default:
+                let msg = {
+                    msg: 'Bad Request'
+                }
+                res.status(400).json(msg)
                 break;
         }
     }
