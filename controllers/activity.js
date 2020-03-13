@@ -44,7 +44,7 @@ class ActivityController {
                         }
                     })
                 } else {
-                    res.status(404).json({ status: 404, message: "Sorry, we do not find the activity you're looking for"})
+                    res.status(404).json({ status: 404, message: "Sorry, we do not find the activity you're looking for" })
                 }
             })
             .then(() => {
@@ -66,6 +66,24 @@ class ActivityController {
         })
             .then(updatedActivity => {
                 res.status(200).json(updatedActivity)
+            })
+            .catch(err => {
+                res.status(500).json(err)
+            })
+    }
+
+    static getById(req, res, next) {
+        Activity.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(activity => {
+                if (activity) {
+                    res.status(200).json(activity)
+                } else {
+                    res.status(404).json({ status: 404, message: "Sorry, we do not find the activity you're looking for" })
+                }
             })
             .catch(err => {
                 res.status(500).json(err)
