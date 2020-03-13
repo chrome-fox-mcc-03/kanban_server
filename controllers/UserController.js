@@ -9,7 +9,8 @@ class UserController {
     User.create({
       email,
       password,
-      username
+      username,
+      url: process.env.DEFAULT_IMAGE_URL
     })
       .then(newData => {
         let payload = {

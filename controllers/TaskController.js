@@ -1,9 +1,9 @@
-const { Task, Category } = require("../models");
+const { Task, Category, User } = require("../models");
 
 class TaskController {
   static findAll(req, res, next) {
     Task.findAll({
-      include: [Category]
+      include: [Category, User]
     })
       .then(allData => {
         res.status(200).json({
@@ -138,7 +138,8 @@ class TaskController {
           if (response.CategoryId === 4) {
             next({
               status: 400,
-              msg: "Task cannot be moved from when it is already in Done category"
+              msg:
+                "Task cannot be moved from when it is already in Done category"
             });
           } else {
             next({
