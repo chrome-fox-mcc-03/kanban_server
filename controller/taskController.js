@@ -94,7 +94,7 @@ class Controller {
                 res.status(200).json({tasks: null, msg: 'Board is empty.'})
             }
         })
-        .catch(next => console.log(next))
+        .catch(next)
     }
 }
 

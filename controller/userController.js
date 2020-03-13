@@ -138,7 +138,6 @@ class Controller {
             })
             const payload = ticket.getPayload()
             const email = payload.email
-            console.log(email)
             User.findOne({
                 where: {
                     email: email
