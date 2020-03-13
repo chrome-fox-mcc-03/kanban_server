@@ -1,6 +1,6 @@
 module.exports = function(err, req, res, next) {
     if(err.name) {
-        switch (key) {
+        switch (err.name) {
             case value:
                 
                 break;
