@@ -1,8 +1,8 @@
 const sequelize = require("sequelize")
 const jwt = require('jsonwebtoken');
 const { User } = require("../models")
-const { comparePassword } = require("../helpers/bcrypts.js")
-const { generateToken } = require("../helpers/jwt.js")
+const { checkPassword } = require("../helpers/bcrypt.js")
+const { createToken } = require("../helpers/jwt.js")
 const customError = require("../helpers/errorModel.js")
 const { OAuth2Client } = require('google-auth-library')
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
@@ -44,7 +44,9 @@ class UserController {
     static login(req, res, next) {
         console.log(`>>> LOGIN <<<`);
         console.log("CREDENTIALS:");
-        console.log(req.body);
+        // console.log(req.body);
+        console.log(req.body.email);
+        console.log(req.body.password);
         emailAddress =  req.body.email
         passcode = req.body.password
 
@@ -59,20 +61,27 @@ class UserController {
             
             if(response) {
 
-                passwordMatchFlag = comparePassword(passcode, response.password)
+                console.log(`response is`);
+                console.log(response);
+
+                passwordMatchFlag = checkPassword(passcode, response.password)
             // console.log(`does matching password success: ${passwordMatchFlag}`);
 
                 if (passwordMatchFlag && response) {
                     console.log(`Password match`);
                     payload = {
-                        id: response.dataValues.id,
+                        id: response.id,
                         email: emailAddress
                     }
-                    accessToken = generateToken(payload)
+                    console.log(`payload is`);
+                    console.log(payload);
+                    accessToken = createToken(payload)
 
                     console.log(`generated token`);
                     console.log(accessToken);
                     req.headers.token = accessToken;
+                    console.log("req.headers.token is: \n");
+                    console.log(req.headers.token);
                
                     // req.payload = payload
                     res.status(200).json({token: accessToken})

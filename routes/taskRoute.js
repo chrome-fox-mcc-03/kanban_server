@@ -1,17 +1,16 @@
 const taskRoute = require("express").Router()
 const authentication = require("../middleware/authentication.js")
 const authorization = require("../middleware/authorization.js")
-// const TaskController = require("../controllers/taskController.js")
+const TaskController = require("../controllers/taskController.js")
 
 
 taskRoute.use(authentication)
-taskRoute.post("/", TaskController.create)
 taskRoute.get("/", TaskController.getAll)
+taskRoute.post("/", TaskController.create)
 taskRoute.get("/:id", TaskController.getById)
 
-taskRoute.use(authorization)
-taskRoute.put("/:id", TaskController.update)
-taskRoute.delete("/:id", TaskController.delete)
+taskRoute.put("/:id", authorization, TaskController.update)
+taskRoute.delete("/:id", authorization, TaskController.delete)
 
 // taskRoute.post("/assign/:userId", TaskController.assign)
 // taskRoute.delete("/discharge/:userId", TaskController.discharge)

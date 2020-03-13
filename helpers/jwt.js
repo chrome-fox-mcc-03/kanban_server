@@ -1,17 +1,14 @@
 const jwt = require("jsonwebtoken")
 
 function createToken(payload) {
-    jwt.sign(payload, process.env.SECRET, {
-        expiresIn: "1h"
-    })
+    return jwt.sign(payload, process.env.SECRET)
 }
 
 function verifyToken(logged) {
-    jwt.verify(logged, process.env.SECRET, {
-        maxAge: "1h"
-    })
+    return jwt.verify(logged, process.env.SECRET)
 }
 
 module.exports = {
-    createToken, verifyToken
+    createToken, 
+    verifyToken
 }

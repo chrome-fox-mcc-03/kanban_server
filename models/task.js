@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     Task.init({
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isEmpty: {
-          isEmpty: false,
-          args: "Title must be filled."
+        notNull() {
+          if(!this.title) {
+            throw new Error("Title must be filled")
+          }
         }
       }
     },

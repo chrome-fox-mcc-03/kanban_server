@@ -1,12 +1,12 @@
 const { Task } = require("../models")
 const  customError  = require("../helpers/errorModel.js")
 
-function authorization() {
+function authorization(req, res, next) {
 
     console.log(">>AUTHORIZATION<< \n");
+    console.log(req.params)
     let taskId = +req.params.id
     let userId = req.decoded.id
-
     Task.findByPk(taskId)
         .then(response => {
             console.log("TASK FOUND");
@@ -23,6 +23,7 @@ function authorization() {
             }
         })
         .catch(err => {
+            console.log(err)
             next(err)
         })
 }

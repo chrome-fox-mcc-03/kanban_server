@@ -63,8 +63,57 @@ class TaskController {
                 UserId: req.decoded.id
             }
         })
-            .then(tasks => {
-                console.log("TODOS FOUND!");
+            .then(response => {
+
+                console.log("RESPONSE FOUND:");
+                console.log(response);
+
+                // PILAH DISINI AJA SBLOM KIRIM
+                // take .dataValues.category to flag category
+                // take dataValues for body values
+                let backlog = []
+                let requested = []
+                let wip = []
+                let done = []
+                response.forEach(el => {
+                    if (el.dataValues.category === "backlog") {
+                        backlog.push(el)
+                    } else if (el.dataValues.category === "requested") {
+                        requested.push(el)
+                    } else if (el.dataValues.category === "wip") {
+                        wip.push(el)
+                    } else if (el.dataValues.category === "done") {
+                        done.push(el)
+                    }
+                })
+
+                // let backlog = [ { "id": 2,
+                // "title": "nyekar",
+                // "due_date": new Date("2020-05-04"),
+                // "category": "backlog",
+                // "UserId": 5}]
+                // let requested = [ { "id": 2,
+                // "title": "nyekar",
+                // "due_date": new Date("2020-05-04"),
+                // "category": "requested",
+                // "UserId": 5}]
+                // let wip = [ { "id": 2,
+                // "title": "nyekar",
+                // "due_date": new Date("2020-05-04"),
+                // "category": "wip",
+                // "UserId": 5}]
+
+                // let done = [ { "id": 2,
+                // "title": "nyekar",
+                // "due_date": new Date("2020-05-04"),
+                // "category": "done",
+                // "UserId": 5}]
+
+                let tasks = {
+                    backlog, requested, wip, done
+                }
+
+                console.log("TASK FOUND!");
                 res.status(200).json({data:tasks, message: "Here are the complete list", decoded:req.decoded})
             })
             .catch(err => {
@@ -98,7 +147,7 @@ class TaskController {
     }
 
     static update(req, res, next) {
-        console.log(`>>>> UPDATE TODO BY ID <<<<`);
+        console.log(`>>>> UPDATE TASK BY ID <<<<`);
         console.log(req.params.id);
         console.log(`checking which user`);
         console.log(req.decoded);
