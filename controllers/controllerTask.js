@@ -13,7 +13,7 @@ class ControllerTask {
                 res.status(200).json(tasks)
             })
             .catch(err => {
-                res.status(500).json(err)
+                next(err)
             })
     }
 
@@ -30,7 +30,7 @@ class ControllerTask {
                 res.status(201).json(task)
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 
@@ -40,6 +40,7 @@ class ControllerTask {
             include: [User]
         })
             .then(task => {
+                console.log(task,'<<<<<<<<<<<<<<<')
                 if (!task) {
                     const error = {
                         name: "Task not found"
@@ -50,7 +51,8 @@ class ControllerTask {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                console.log(err)
+                next(err)
             })
     }
 
@@ -81,7 +83,7 @@ class ControllerTask {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 
@@ -108,7 +110,7 @@ class ControllerTask {
                 res.status(203).json(task)
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 }

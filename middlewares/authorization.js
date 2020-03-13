@@ -21,7 +21,7 @@ function taskAuthorization(req,res,next) {
             }
         })
         .catch(err => {
-            res.status(400).json(err)
+            next(err)
         })
 }
 

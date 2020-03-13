@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     validate: {
       emptyString() {
         if (!this.title || !this.category) {
-          throw new Error('Value Must Be Filled')
+          throw new Error('Field Must Be Filled')
         }
       }
     },

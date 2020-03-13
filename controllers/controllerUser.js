@@ -8,7 +8,7 @@ class ControllerUser {
                 res.status(200).json(result)
             })
             .catch(err => {
-                res.status(500).json(err)
+                next(err)
             })
     }
     
@@ -25,7 +25,7 @@ class ControllerUser {
                 res.status(201).json(user)
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 
@@ -43,7 +43,8 @@ class ControllerUser {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                console.log(err)
+                next(err)
             })
     }
 
@@ -75,7 +76,7 @@ class ControllerUser {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 
@@ -102,7 +103,7 @@ class ControllerUser {
                 res.status(203).json(user)
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
 

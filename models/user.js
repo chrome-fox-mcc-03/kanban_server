@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
     validate: {
       emptyString() {
         if(!this.first_name || !this.last_name || !this.email || !this.password || !this.role){
-          throw new Error('value must be filled')
+          throw new Error('Field must be filled')
         }
       }
     },

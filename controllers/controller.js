@@ -14,14 +14,14 @@ class Controller {
             .then(result => {
                 if (!result) {
                     const error = {
-                        name: "Email or Password Invalid"
+                        name: "Email or Password Invalid!"
                     }
                     throw error
                 } else {
                     const isTrue = comparePass(password, result.password)
                         if (!isTrue) {
                             const error = {
-                                name: "Email or Password Invalid"
+                                name: "Email or Password Invalid!"
                             }
                             throw error
                         } else {
@@ -39,7 +39,7 @@ class Controller {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                next(err)
             })
     }
     static loginGoogle (req, res, next) {
@@ -98,7 +98,8 @@ class Controller {
                 res.status(200).json({ token })
             })
             .catch(err => {
-                res.status(500).json(err)
+                console.log(err)
+                next(err)
             })
     }
 }

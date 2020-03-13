@@ -30,10 +30,12 @@ function authentication(req, res, next) {
                 }
             })
             .catch(err => {
-                res.status(400).json(err)
+                console.log(err)
+                next(err)
             })
     } catch(err) {
-        res.status(500).json(err)
+        console.log(err)
+        next(err)
     }
 }
 
@@ -45,7 +47,7 @@ function adminAuth(req,res,next) {
         const error = {
             name: "You are not authenticated to do such thing"
         }
-        res.status(401).json(error)
+        next(error)
     }
 }
 
