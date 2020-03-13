@@ -13,7 +13,6 @@ class ControllerUser {
     }
     
     static addUser (req, res, next) {
-        setTimeout( _ => {
             const { first_name,last_name,email,password,role } = req.body
             User.create({ 
                 first_name,
@@ -28,7 +27,6 @@ class ControllerUser {
                 .catch(err => {
                     next(err)
                 })
-        }, 2000)
     }
 
     static getById (req, res, next) {

@@ -6,6 +6,9 @@ const ControllerUser = require('./../controllers/controllerUser')
 const { authentication } = require('./../middlewares/authentication')
 const { adminAuth } = require('./../middlewares/authentication')
 
+router.get('/', (req, res) => {
+    res.send("Hello World")
+})
 router.post('/users', ControllerUser.addUser)
 router.post('/login', Controller.login)
 router.post('/loginGoogle', Controller.loginGoogle)
