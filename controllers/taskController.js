@@ -66,7 +66,7 @@ class TaskController {
             .then(response => {
 
                 console.log("RESPONSE FOUND:");
-                console.log(response);
+                // console.log(response);
 
                 // PILAH DISINI AJA SBLOM KIRIM
                 // take .dataValues.category to flag category
@@ -75,6 +75,7 @@ class TaskController {
                 let requested = []
                 let wip = []
                 let done = []
+                let allData = []
                 response.forEach(el => {
                     if (el.dataValues.category === "backlog") {
                         backlog.push(el)
@@ -85,7 +86,11 @@ class TaskController {
                     } else if (el.dataValues.category === "done") {
                         done.push(el)
                     }
+
+
+                    allData.push(el.dataValues)
                 })
+
 
                 // let backlog = [ { "id": 2,
                 // "title": "nyekar",
@@ -114,9 +119,10 @@ class TaskController {
                 }
 
                 console.log("TASK FOUND!");
-                res.status(200).json({data:tasks, message: "Here are the complete list", decoded:req.decoded})
+                res.status(200).json({data:tasks, allData: allData, message: "Here are the complete list", decoded:req.decoded})
             })
             .catch(err => {
+                console.log(err)
                 next(err)
             })
     }
