@@ -18,7 +18,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'No description.'
     },
-    due_date: DataTypes.DATE,
+    due_date: {
+      type:DataTypes.DATE,
+      allowNull:false,
+      validate: {
+        notNull: {
+          args: 'Please insert due date!'
+        },
+        isAfter: {
+          args: String(new Date()),
+          msg: 'Date must be in the future!'
+        }
+      }
+    },
     creator_id: DataTypes.INTEGER,
     board_id: DataTypes.INTEGER,
     color: {
@@ -33,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
   Task.associate = function(models) {
     Task.belongsTo(models.Board, {
       foreignKey: 'board_id'
+    }),
+    Task.belongsTo(models.User, {
+      foreignKey: 'creator_id'
     })
   };
   return Task;

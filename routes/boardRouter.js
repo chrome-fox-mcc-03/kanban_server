@@ -10,4 +10,4 @@ router.get('/', boardController.showYourBoard)
 router.get('/shared', boardController.showSharedBoard)
 
 
-module.exports = user
+module.exports = router

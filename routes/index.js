@@ -10,9 +10,12 @@ const auth = require('../middleware/authentication')
 
 router.post('/signin', userController.signIn)
 router.post('/signup', userController.signUp)
+router.post('/oauth', userController.googleSignIn)
+router.post('/oauthSignUp', userController.signUp)
 
 router.use(auth)
 router.use('/board', boardRouter)
 router.use('/task', taskRouter)
+router.get('/findUser/:username', userController.findUser)
 
-module.exports = user
+module.exports = router

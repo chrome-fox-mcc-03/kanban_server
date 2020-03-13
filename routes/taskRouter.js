@@ -10,7 +10,7 @@ const {
 router.post('/:boardId', checkTaskBoardAdd, taskController.createTask)
 router.put('/:id', taskController.editTask)
 router.put('/status/:id', taskController.updateStatus)
-router.delete('/:id', taskController.deleteTask)
-router.get('/:boardId', checkTaskBoardDelete ,taskController.showTask)
+router.delete('/:id', checkTaskBoardDelete ,taskController.deleteTask)
+router.get('/:boardId', taskController.showTask)
 
-module.exports = user
+module.exports = router

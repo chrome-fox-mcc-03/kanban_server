@@ -66,6 +66,9 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Board, {
       as: 'Creator',
       foreignKey: 'creator_id'
+    }),
+    User.hasMany(models.Task, {
+      foreignKey: 'creator_id'
     })
   };
   return User;

@@ -4,9 +4,14 @@ const { Task, User } = require('../models/index')
 
 class Controller {
     static createTask(req, res, next){
+        for(const key in req.body){
+            if(!req.body[key]){
+                req.body[key] = null
+            }
+        }
         const data = {
             title: req.body.title,
-            desc: req.body.desc,
+            description: req.body.desc,
             due_date: req.body.due_date,
             creator_id: req.decoded.id,
             board_id: req.params.boardId,
@@ -21,9 +26,10 @@ class Controller {
     }
 
     static editTask(req, res, next){
+        
         const data = {
             title: req.body.title,
-            desc: req.body.desc,
+            description: req.body.desc,
             due_date: req.body.due_date,
             color: req.body.color
         }
@@ -48,7 +54,12 @@ class Controller {
         const newCategory = categories[categories.findIndex(el => el == currentCategory) + updateCategory]
         Task.update({
             category: newCategory
-        })
+        },{
+            where: {
+                id: req.params.id
+            }
+        }
+        )
         .then(response => res.status(201).json({msg:'Task edited'}))
         .catch(next)
     }
@@ -70,7 +81,6 @@ class Controller {
         Task.findAll({
             include: {
                 model: User,
-                as: 'Creator'
             },
             where: {
                 board_id: req.params.boardId
@@ -84,7 +94,7 @@ class Controller {
                 res.status(200).json({tasks: null, msg: 'Board is empty.'})
             }
         })
-        .catch(next)
+        .catch(next => console.log(next))
     }
 }
 

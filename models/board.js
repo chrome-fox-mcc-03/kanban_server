@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
   Board.associate = function(models) {
     Board.belongsToMany(models.User, {
       through: models.UserBoard,
-      as: 'Member',
-      foreignKey: 'user_id'
+      as: 'SharedBoard',
+      foreignKey: 'board_id'
     }),
-    Board.hasMany(models.task, {
+    Board.hasMany(models.Task, {
       foreignKey: 'board_id'
     }),
     Board.belongsTo(models.User, {

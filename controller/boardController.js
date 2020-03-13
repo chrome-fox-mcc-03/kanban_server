@@ -1,6 +1,6 @@
 "use strict"
 
-const { Board, UserBoard, User } = require('../models/index')
+const { Board, User, UserBoard } = require('../models/index')
 const bgUrl = [
     "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     "https://images.pexels.com/photos/583846/pexels-photo-583846.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
@@ -15,7 +15,13 @@ const bgUrl = [
 
 class Controller {
     static addBoard(req, res, next){
+        let newBoard
         const promises = [];
+        for(const key in req.body){
+            if(!req.body[key]){
+                req.body[key] = null
+            }
+        }
         if(req.body.background_id > 8){
             throw({
                 statusCode: 400,
@@ -29,24 +35,27 @@ class Controller {
         }
         Board.create(data)
         .then(result => {
+            newBoard = result
             const sharedUserId = req.body.sharedUserId
-            sharedUserId.forEach(userId => {
-                let promise = new Promise((resolve, reject) => {
-                    UserBoard.create({
-                        user_id: userId,
-                        board_id: result.id
+            if(sharedUserId){
+                sharedUserId.forEach(userId => {
+                    let promise = new Promise((resolve, reject) => {
+                        UserBoard.create({
+                            user_id: userId,
+                            board_id: result.id
+                        })
+                        .then(response => resolve(response))
+                        .catch(err => reject(err))
                     })
-                    .then(response => resolve(response))
-                    .catch(err => reject(err))
+                    promises.push(promise)
                 })
-                promises.push(promise)
-            })
-            return Promise.all(promises)
+                return Promise.all(promises)                
+            }
         })
         .then(response => {
-            res.status(201).json({msg: 'Board created'})
+            res.status(201).json({newBoard, msg: 'Board created'})
         })
-        .catch(next)
+        .catch(err => console.log(err))
     }
 
     static deleteBoard(req, res, next){
@@ -66,7 +75,7 @@ class Controller {
         const userId = req.decoded.id
         Board.findAll({
             where: {
-                id: userId
+                creator_id: userId
             }
         })
         .then(results => {
@@ -83,17 +92,22 @@ class Controller {
         Board.findAll({
             include: {
                 model: User,
-                as: 'Member'
+                as: 'SharedBoard'
             },
-            where: {
-                'Member': req.decoded.id
-            }
         })
         .then(results => {
-            if(results[0]){
-                res.status(200).json({boards: results})
+            const sharedBoard = []
+            results.forEach( el => {
+                el.dataValues.SharedBoard.forEach(member => {
+                    if(member.id == req.decoded.id){
+                        sharedBoard.push(el)
+                    }
+                })
+            })
+            if(sharedBoard[0]){
+                res.status(200).json({boards: sharedBoard})
             }else{
-                res.status(200.).json({boards: null, msg: 'You dont have any shared board'})
+                res.status(200).json({boards: null, msg: 'You dont have any shared board'})
             }
         })
         .catch(next)
