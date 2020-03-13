@@ -54,10 +54,10 @@ class UserController {
                         const access_token = generateToken(payload);
                         res.status(200).json({ access_token })
                     } else {
-                        res.status(400).json({ status: 400, message: 'Invalid password' })
+                        res.status(400).json({ status: 400, message: 'Invalid email/password' })
                     }
                 } else {
-                    res.status(400).json({ status: 400, message: 'Invalid email' })
+                    res.status(400).json({ status: 400, message: 'Invalid email/password' })
                 }
             })
             .catch(err => {
