@@ -19,9 +19,10 @@ module.exports = {
   },
   findAllTask(req, res, next) {
     const GroupId = req.headers.groupid
+    const CategoryId = req.headers.categoryid
 
     Task.findAll({
-      where: { GroupId }
+      where: { GroupId, CategoryId }
     })
       .then(data => {
         res.status(200).json({
@@ -44,6 +45,7 @@ module.exports = {
           message: 'Success update Task'
         })
       })
+      .catch(next)
   },
   deleteTask(req, res, next) {
     const { id } = req.params
@@ -56,5 +58,30 @@ module.exports = {
           message: 'Success delete Task'
         })
       })
+      .catch(next)
+  },
+  findOneTask(req, res, next) {
+    const GroupId = req.headers.groupid
+    const CategoryId = req.headers.categoryid
+    const { id } = req.params
+
+    Task.findOne({
+      where: {
+        id, GroupId, CategoryId
+      }
+    })
+      .then(data => {
+        if(data) {
+          res.status(200).json({
+            data
+          })
+        } else {
+          next({
+            status: 404,
+            message: 'Task not found'
+          })
+        }
+      })
+      .catch(next)
   }
 }

@@ -5,7 +5,7 @@ module.exports = {
   isLogin(req, res, next) {
     const { token } = req.headers
     const { email } = verifyToken(token)
-
+    
     User.findOne({
       where: { email }
     })
@@ -76,9 +76,10 @@ module.exports = {
   isMember(req, res, next) {
     const { id } = req.decoded
     const GroupId = req.headers.groupid
+    console.log(id, GroupId)
 
     GroupUser.findOne({
-      where: { id, GroupId }
+      where: { UserId: id, GroupId }
     })
       .then(data => {
         if(data) {
