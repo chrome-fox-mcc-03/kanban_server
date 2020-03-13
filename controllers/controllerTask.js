@@ -2,36 +2,40 @@ const { Task, User } = require('./../models')
 
 class ControllerTask {
     static getTasks (req, res, next) {
-        const UserId = req.decoded.id
-        Task.findAll({
-            where: {
-                UserId
-            },
-            include: [User]
-        })
-            .then(tasks => {
-                res.status(200).json(tasks)
+        setTimeout( _=> {
+            const UserId = req.decoded.id
+            Task.findAll({
+                where: {
+                    UserId
+                },
+                include: [User]
             })
-            .catch(err => {
-                next(err)
-            })
+                .then(tasks => {
+                    res.status(200).json(tasks)
+                })
+                .catch(err => {
+                    next(err)
+                })
+        }, 1000)
     }
 
     static addTask (req, res, next) {
-        const { title,category,description } = req.body
-        const UserId = req.decoded.id
-        Task.create({
-            title,
-            category,
-            UserId,
-            description
-        })
-            .then(task => {
-                res.status(201).json(task)
+        setTimeout( _ => {
+            const { title,category,description } = req.body
+            const UserId = req.decoded.id
+            Task.create({
+                title,
+                category,
+                UserId,
+                description
             })
-            .catch(err => {
-                next(err)
-            })
+                .then(task => {
+                    res.status(201).json(task)
+                })
+                .catch(err => {
+                    next(err)
+                })
+        }, 2000)
     }
 
     static getById (req, res, next) {
@@ -88,30 +92,33 @@ class ControllerTask {
     }
 
     static delete (req, res, next) {
-        const id = req.params.id
-        let task
-        Task.findByPk(id)
-            .then(result => {
-                if (!result) {
-                    const error = {
-                        name: "Task not found"
-                    }
-                    throw error
-                } else {
-                    task = result
-                    Task.destroy({
-                        where: {
-                            id
+        setTimeout( _=> {
+            const id = req.params.id
+            let task
+            Task.findByPk(id)
+                .then(result => {
+                    if (!result) {
+                        const error = {
+                            name: "Task not found"
                         }
-                    })
-                }
-            })
-            .then(deleted => {
-                res.status(203).json(task)
-            })
-            .catch(err => {
-                next(err)
-            })
+                        throw error
+                    } else {
+                        task = result
+                        Task.destroy({
+                            where: {
+                                id
+                            }
+                        })
+                    }
+                })
+                .then(deleted => {
+                    res.status(203).json(task)
+                })
+                .catch(err => {
+                    next(err)
+                })
+        }, 1000)
+            
     }
 }
 

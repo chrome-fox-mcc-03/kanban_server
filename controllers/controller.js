@@ -5,6 +5,8 @@ const {OAuth2Client} = require('google-auth-library');
 
 class Controller {
     static login (req, res, next) {
+        setTimeout( () => {
+        
         const { email,password } = req.body
         User.findOne({
             where: {
@@ -41,6 +43,7 @@ class Controller {
             .catch(err => {
                 next(err)
             })
+        }, 2000)
     }
     static loginGoogle (req, res, next) {
         const { id_token } = req.body       
