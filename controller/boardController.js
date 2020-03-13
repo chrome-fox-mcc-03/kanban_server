@@ -55,7 +55,7 @@ class Controller {
         .then(response => {
             res.status(201).json({newBoard, msg: 'Board created'})
         })
-        .catch(err => console.log(err))
+        .catch(err)
     }
 
     static deleteBoard(req, res, next){
