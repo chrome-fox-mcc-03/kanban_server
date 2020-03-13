@@ -1,10 +1,10 @@
+const { OAuth2Client } = require('google-auth-library');
 const { decode } = require('../helpers/bcrypt');
 const { sign } = require('../helpers/jwt');
-const { User } = require('../models');
+const { User, ProjectUser } = require('../models');
 
 class UserController {
 	static login (req, res, next) {
-		console.log(`hit`);
 		let { email, password } = req.body;
 		User.findOne({
 			where: { email }
@@ -16,11 +16,13 @@ class UserController {
 							id: result.id,
 							email
 						};
-
 						try {
 							let token = sign(payload);
 
-							res.status(200).json({ token });
+							res.status(200).json({
+								token,
+								name: result.name
+							});
 						} catch (err) {
 							next(err);
 						}
@@ -56,13 +58,12 @@ class UserController {
 					email
 				};
 
-				try {
-					let token = sign(payload);
+				let token = sign(payload);
 
-					res.status(201).json({ token });
-				} catch (err) {
-					next(err);
-				}
+				res.status(201).json({
+					token,
+					name
+				});
 			})
 			.catch(err => {
 				next(err);
@@ -90,6 +91,55 @@ class UserController {
 				console.log(err);
 				next(err);
 			})
+	}
+
+	static getUser (req, res, next) {
+		User.findAll()
+			.then(result => {
+				res.status(200).json(result);
+			})
+			.catch(next)
+	}
+
+	static google (req, res, next) {
+		let idToken = req.body.idToken;
+
+		const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+		let payload = null;
+		client.verifyIdToken({
+			idToken,
+			audience: process.env.GOOGLE_CLIENT_ID
+		})
+			.then(result => {
+				payload = result.getPayload();
+				const email = payload.email;
+				return User.findOne({
+					where: { email }
+				})
+			})
+			.then(result => {
+				if (result) {
+					return result
+				} else {
+					return User.create({
+						name: payload.name,
+						email: payload.email,
+						password: process.env.DEFAULT_PASSWORD
+					})
+				}
+			})
+			.then(result => {
+				const token = sign({
+					id: result.id,
+					email: payload.email
+				})
+
+				res.status(201).json({
+					token,
+					name: payload.name
+				});
+			})
+			.catch(next);
 	}
 }
 

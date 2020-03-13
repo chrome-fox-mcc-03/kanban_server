@@ -25,6 +25,20 @@ class ProjectController {
 			.catch(next)
 	}
 
+	static getUserProject (req, res, next) {
+		let UserId = req.decoded.id;
+
+		ProjectUser.findAll({
+			where: { UserId },
+			include: [ Project ]
+		})
+			.then(result => {
+				let projects = result.map(el => el.Project);
+				res.status(200).json(projects);
+			})
+			.catch(next)
+	}
+
 	static delete (req, res, next) {
 		let { id } = req.params;
 		let project = null;
@@ -124,9 +138,12 @@ class ProjectController {
 		let ProjectId = req.params.id;
 
 		Card.findAll({
-			where: { ProjectId }
+			where: { ProjectId },
+			include: [ User ],
+			order: [['createdAt', 'ASC']]
 		})
 			.then(result => {
+				console.log(result);
 				let cards = {
 					'Backlog': [],
 					'Product': [], 

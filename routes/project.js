@@ -4,7 +4,9 @@ const ProjectUserController = require('../controllers/projectUser');
 const cardRouter = require('../routes/card');
 const { kanbanAuthorization, projectAuthorization } = require('../middlewares/authorization');
 
+router.get('/', ProjectController.getUserProject);
 router.post('/', ProjectController.create);
+
 router.get('/:id(\\d+)/kanban', kanbanAuthorization, ProjectController.getKanban);
 
 router.use('/:id(\\d+)', projectAuthorization);

@@ -4,5 +4,6 @@ const { userAuthorization } = require('../middlewares/authorization');
 
 router.use('/:id(\\d+)', userAuthorization);
 router.put('/:id(\\d+)', UserController.update);
+router.get('/', UserController.getUser);
 
 module.exports = router

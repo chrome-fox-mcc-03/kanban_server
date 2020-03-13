@@ -23,6 +23,13 @@ module.exports = {
 			imageUrl: '',
 			createdAt: new Date(),
 			updatedAt: new Date()
+		}, {
+			name: 'Abdul Doe',
+			email: 'Abdul@doe.com',
+			password: encode('qweqwe'),
+			imageUrl: '',
+			createdAt: new Date(),
+			updatedAt: new Date()
 		}], {
 			individualHooks: true
 		});

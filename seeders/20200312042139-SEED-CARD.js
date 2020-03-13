@@ -21,7 +21,7 @@ module.exports = {
 			updatedAt: new Date()
 		}, {
 			description: 'Card1',
-			UserId: 1,
+			UserId: 2,
 			ProjectId: 1,
 			dueDate: new Date('2020-12-12'),
 			status: 'Done',
@@ -45,6 +45,22 @@ module.exports = {
 			updatedAt: new Date()
 		}, {
 			description: 'Card4',
+			UserId: 1,
+			ProjectId: 1,
+			dueDate: new Date('2020-12-12'),
+			status: 'Backlog',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		}, {
+			description: 'Card5',
+			UserId: 1,
+			ProjectId: 1,
+			dueDate: new Date('2020-12-12'),
+			status: 'Backlog',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		}, {
+			description: 'Card6',
 			UserId: 1,
 			ProjectId: 1,
 			dueDate: new Date('2020-12-12'),
