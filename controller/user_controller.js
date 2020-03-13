@@ -50,13 +50,13 @@ class UserController {
                         res.status(200).json({ token });
                     } else {
                         next({
-                            status: 404,
+                            status: 400,
                             message: `wrong username/password`
                         })
                     }
                 } else {
                     next({
-                        status: 404,
+                        status: 400,
                         message: 'wrong username/password'
                     })
                 }
@@ -67,7 +67,9 @@ class UserController {
     }
 
     static googleLogin(req, res, next) {
+        
         let id_token = req.headers.token;
+        console.log(id_token);
         const client = new OAuth2Client(process.env.CLIENT_ID);
         let googleAccount
         client.verifyIdToken({
