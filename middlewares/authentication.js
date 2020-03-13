@@ -6,7 +6,7 @@ const invalid = "invalid token!";
 function authentication(req, res, next) {
     let token = req.headers.token;
     if (!token) {
-        throw new CustomError(400, invalid);
+        throw new CustomError(401, invalid);
     } else {
         try {
             let user = jwt.verify(token);
@@ -16,10 +16,10 @@ function authentication(req, res, next) {
                         req.userId = user.id;
                         next();
                     } else {
-                        throw new CustomError(400, invalid);
+                        throw new CustomError(401, invalid);
                     }
                 }).catch((err) => {
-                    throw new CustomError(400, invalid);
+                    throw new CustomError(401, invalid);
                 });
         } catch (error) {
             next(error);
