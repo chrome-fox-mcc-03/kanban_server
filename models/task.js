@@ -6,10 +6,23 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Task.init({
-    title: DataTypes.STRING,
-    status: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Please Fill Title'
+        }
+      }
+    },
+    category: DataTypes.STRING,
     UserId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (Task, option) => {
+        Task.category = 'BACKLOG'
+      }
+    },
     sequelize,
     modelName: 'Task'
   })

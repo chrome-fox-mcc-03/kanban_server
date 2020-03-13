@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        // allowNull: {
-        //   args: false,
-        //   msg: 'Please Fill Your Name'
-        // },
         notEmpty: {
           args: true,
           msg: 'Please Fill Your Name'
@@ -41,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         isAlphanumeric: {
           args: true,
           msg: 'Please Fill Password (Your Password Should be alphanumeric)'
+        },
+        len: {
+          args: [6, 10],
+          msg: 'Password Must Be 6-10 character'
         }
       }
     }

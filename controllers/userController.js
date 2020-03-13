@@ -29,7 +29,7 @@ class Controller {
             }
             res.status(200).json(data)
         }).catch(err => {
-            res.status(400).json(err)
+            next(err)
         })
     }
 
@@ -38,16 +38,14 @@ class Controller {
             email,
             password
         } = req.body
+        console.log(req.body, 'email dan password');
+
         User.findOne({
             where: {
                 email: email
             }
         }).then(result => {
             let login = Compare(password, result.password)
-            console.log('masuk login');
-
-            console.log(login);
-
             if (login) {
                 let payload = {
                     id: result.id,
@@ -56,12 +54,16 @@ class Controller {
                 let token = genToken(payload)
                 res.status(200).json(token)
             } else {
-                res.status(400).json({
+                next({
+                    status: 400,
                     msg: 'Email/Password is wrong'
                 })
             }
         }).catch(err => {
-            res.status(500).json(err)
+            next({
+                status: 400,
+                msg: 'Email/Password is wrong'
+            })
         })
     }
 }
