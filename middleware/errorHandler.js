@@ -15,7 +15,6 @@ module.exports = function(err, req, res, next){
             default:
                 res.status(500).json(err)
                 break
-            
         }
     }
     if(err.statusCode){

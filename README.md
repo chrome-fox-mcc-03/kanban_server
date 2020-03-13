@@ -175,6 +175,10 @@
 * **Error Response:**
 
   * **Code:** 500 Internal Server Error <br />
+   OR
+
+  * **Code:** 400 Bad Request <br />
+    **Content:** `{ error : "ERROR 400 Bad Request: Please fill your name." }`
 
 ----
 **GET KANBAN BOARD**
@@ -253,6 +257,7 @@
      `id=[int]`<br />
      `title=[string]`<br />
      `background=[string]`<br />
+     `memberId=[Array of integer] (optional)`<br />
 
 
 * **Success Response:**
@@ -276,4 +281,360 @@
 * **Error Response:**
 
   * **Code:** 500 Internal Server Error <br />
+
+* **Code:** 400 Bad Request <br />
+    **Content:** `{ error : "ERROR 400 Bad Request: Please fill the title." }`
+
+----
+**DELETE KANBAN BOARD**
+----
+  Create a kanban board data
+
+* **URL**
+
+  /board/:id
+
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `id=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+
+
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** 
+    ```json
+         {
+        "msg": "Board deleted"
+        }
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 400 Bad Request <br />
+        **Content:** `{ error : "ERROR 400 Bad Request: Id not found." }`
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
+
+----
+**GET SHARED KANBAN BOARD**
+----
+  Get all kanban board that shared with the user
+
+* **URL**
+
+  /board/shared
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   None
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+     `id=[int]`<br />
+
+
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** 
+    ```json
+    {
+        "boards": [
+            {
+        "id": 2,
+        "title": "Project Alpha",
+        "background_id": "https://images.pexels.com/photos/917494/pexels-photo-917494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "creator_id": 2,
+        "createdAt": "2020-03-13T14:20:44.962Z",
+        "updatedAt": "2020-03-13T14:20:44.962Z"
+            }
+        ]
+    }
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+----
+**GET TASKS**
+----
+  Returns array of tasks that created on the board
+
+* **URL**
+
+  /task/:boardId
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `boardId=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+     `id=[int]`<br />
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+    "tasks": [
+    {
+      "id": 71,
+      "title": "Card Alpha",
+      "description": "No description.",
+      "due_date": "2020-08-08T00:00:00.000Z",
+      "creator_id": 23,
+      "board_id": 37,
+      "color": "red",
+      "category": "backlog",
+      "createdAt": "2020-03-13T14:50:13.776Z",
+      "updatedAt": "2020-03-13T14:50:13.776Z",
+      "User": {
+        "id": 23,
+        "name": "Adam Primarizki",
+        "email": "adam.primarizki@gmail.com",
+        "username": "adamprmzk",
+        "password": "$2a$10$sjWYql9rnW.GNmQL0OFZ.Ow1UovZ.P33CIQ8/68Vuet0angxS8.Pu",
+        "createdAt": "2020-03-13T09:35:42.665Z",
+        "updatedAt": "2020-03-13T09:35:42.665Z"
+      }
+    }
+  ]
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
+
+
+
+
+----
+**CREATE TASKS**
+----
+  Create a task on a board
+
+* **URL**
+
+  /task/:boardId
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `boardId=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+     `title=[string]`<br />
+     `color=[string]`<br />
+     `description=[string]`<br />
+     `due_date=[date]`<br />
+
+
+* **Success Response:**
+
+  * **Code:** 201 <br />
+    **Content:** 
+    ```json
+      {
+        "data": {
+            "title": "Card Alpha",
+            "due_date": "2020-08-08",
+            "creator_id": 23,
+            "board_id": "37",
+            "color": "red",
+            "category": "backlog"
+        }
+}
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 400 Bad Request <br />
+        **Content:** `{ error : "ERROR 400 Bad Request: Please fill the title." }`
+
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
+
+----
+**GET TASKS**
+----
+  Delete a task
+
+* **URL**
+
+  /task/:id
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `id=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+      {
+        "msg": "Task deleted."
+     }   
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
+
+
+----
+**UPDATE TASKS**
+----
+    Update a task's parameters
+* **URL**
+
+  /task/:id
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `id=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+     `title=[string]`<br />
+     `description=[string]`<br />
+     `due_date=[date]`<br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+        {
+        "msg": "Task edited"
+        }  
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
+
+    * **Code:** 400 Bad Request <br />
+        **Content:** `{ error : "ERROR 400 Bad Request: Id not found." }`
+
+----
+**UPDATE TASKS CATEGORY**
+----
+    Update a task's category
+* **URL**
+
+  /task/status/:id
+
+* **Method:**
+
+  `PUT`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+     `id=[int]`<br />
+
+   * **Headers**
+    `TOKEN`
+
+* **Data Params**
+
+     `category=[string]`<br />
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```json
+        {
+        "msg": "Task edited"
+        }  
+    ```
+ 
+* **Error Response:**
+
+    * **Code:** 500 Internal Server Error <br />
+
+    * **Code:** 401 Unauthorized <br />
+        **Content:** `{ error : "ERROR 401 Bad Request: you are not authorized" }`
 
