@@ -12,9 +12,18 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface.bulkInsert('People', [
+   return queryInterface.bulkInsert('Categories', [
     {
       name: 'Backlog'
+    },
+    {
+      name: 'Todo'
+    },
+    {
+      name: 'On Going'
+    },
+    {
+      name: 'Done'
     }
 ], {})
   },
@@ -27,5 +36,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
+   return queryInterface.bulkDelete('Categories', null, {})
   }
 };

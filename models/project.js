@@ -9,7 +9,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Project.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Project name cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Project name cannot be empty'
+        }
+      }
+    }
   }, {sequelize});
 
   return Project;

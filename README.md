@@ -316,7 +316,7 @@
 
 * **URL**
 
-  /members/invite
+  /members
 
 * **Method:**
 
@@ -368,7 +368,7 @@
 
 * **Method:**
 
-  `POST`
+  `GET`
 
 * **Headers:**
 
@@ -471,7 +471,7 @@
 * **Headers:**
 
   * token
-  * GroupId
+  * ProjectId
 
 * **Data Params**
 
@@ -491,7 +491,8 @@
   ```javascript
     Axios({
       url: 'http://localhost:3000/tasks',
-      method : "GET"
+      method : "GET",
+      headers: { token, ProjectId }
     })
       .then(({data}) => {
         ...
@@ -518,6 +519,7 @@
 * **Headers:**
 
   * token
+  * ProjectId
 
 * **Data URL:**
 
@@ -541,7 +543,8 @@
   ```javascript
     Axios({
       url: 'http://localhost:3000/tasks/:id',
-      method : "GET"
+      method : "GET",
+      headers: { token, ProjectId}
     })
       .then(({data}) => {
         ...
@@ -567,12 +570,12 @@
 * **Headers:**
 
   * token
+  * ProjectId
 
 * **Data params:**
 
     * `name=[string]`
     * `description=[string]`
-    * `GroupId=[integer]`
 
 * **Success Response:**
 
@@ -590,11 +593,10 @@
     Axios({
       url: 'http://localhost:3000/tasks',
       method : "POST",
-      headers: { token },
+      headers: { token, ProjectId },
       data: {
         title: ...,
-        description: ...,
-        GroupId: ...
+        description: ...
       }
     })
       .then(({data}) => {
@@ -613,7 +615,7 @@
 
 * **URL**
 
-  /tasks/:id
+  /tasks/:id/edit
 
 * **Method:**
 
@@ -622,6 +624,7 @@
 * **Headers:**
 
   * token
+  * ProjectId
 
 * **Data URL:**
 
@@ -631,7 +634,6 @@
 
     * `tittle=[string]`
     * `description=[string]`
-    * `GroupId=[integer]`
 
 * **Success Response:**
 
@@ -648,12 +650,69 @@
   ```javascript
     Axios({
       url: 'http://localhost:3000/tasks/1',
-      method : "PUT",
-      headers: { token },
+      method : 'PU',
+      headers: { token, ProjectId },
       data: {
         title: ...,
-        description: ...,
-        GroupId: ...
+        description: ...
+      }
+    })
+      .then(({data}) => {
+        ...
+      })
+      .catch(err => {
+        ...
+      })
+  ```
+---
+
+*category*
+---
+
+  Returns message of success category has been changed. Status code 200.
+
+* **URL**
+
+  /tasks/:id/category
+
+* **Method:**
+
+  `PATCH`
+
+* **Headers:**
+
+  * token
+  * ProjectId
+
+* **Data URL:**
+
+  * `id=[integer]`
+
+* **Data params:**
+
+    * `tittle=[string]`
+    * `description=[string]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ message: 'Change category task successful' }`
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ errors: 'Title cannot be empty' }`
+
+* **Sample Call:**
+
+  ```javascript
+    Axios({
+      url: 'http://localhost:3000/tasks/1',
+      method : 'PU',
+      headers: { token, ProjectId },
+      data: {
+        title: ...,
+        description: ...
       }
     })
       .then(({data}) => {
@@ -681,6 +740,7 @@
 * **Headers:**
 
   * token
+  * ProjectId
 
 * **Data URL:**
 
@@ -702,12 +762,7 @@
     Axios({
       url: 'http://localhost:3000/tasks',
       method : "POST",
-      headers: { token },
-      data: {
-        title: ...,
-        description: ...,
-        GroupId: ...
-      }
+      headers: { token, ProjectId },
     })
       .then(({data}) => {
         ...

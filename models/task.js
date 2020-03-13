@@ -8,8 +8,19 @@ module.exports = (sequelize, DataTypes) => {
       Task.belongsTo(models.Category)
     }
   }
-  const Task = sequelize.define('Task', {
-    name: DataTypes.STRING,
+  Task.init({
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Task name cannot be empty'
+        },
+        isEmpty: {
+          msg: 'Task name cannot be empty'
+        }
+      }
+    },
     description: DataTypes.STRING,
     CategoryId: DataTypes.INTEGER,
     ProjectId: DataTypes.INTEGER

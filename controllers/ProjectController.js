@@ -3,9 +3,9 @@ const { Project, User, Member, Task, sequelize } = require('../models')
 module.exports = 
   class ProjectController {
     static findAll (req, res, next) {
-      { currentUserId } = req
+      const { currentUserId } = req
       Project.findAll({
-        order: [['id']]
+        order: [['id']],
         include: [
           {
             model: User,

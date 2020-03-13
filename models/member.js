@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Model = sequelize.Sequelize.Model
 
-  class Model extends Model {
+  class Member extends Model {
     static associate(models) {}
   }
 

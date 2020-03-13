@@ -45,7 +45,7 @@ module.exports =
       })
       .then(response => {
         if (!response) throw {
-          status: 404
+          status: 404,
           message: 'Task not found'
         }
         else res.status(200).json({ message: 'Delete task successful' })
