@@ -5,6 +5,7 @@ const { comparePassword } = require('../helper/bcrypt')
 const { generateToken } = require('../helper/jwt')
 const {GoogleAuth, OAuth2Client} = require('google-auth-library')
 const client = new OAuth2Client(process.env.CLIENT_ID)
+const sendMail = require('../helper/restdb')
 
 class Controller {
     static findUser(req, res, next){
@@ -83,6 +84,7 @@ class Controller {
                     name: data.name,
                     password: data.password
                 }
+                sendMail(dataToShow)
                 res.status(201).json({data: dataToShow})
             })
             .catch(next)
