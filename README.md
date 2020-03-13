@@ -119,7 +119,7 @@ Logging in an existing user into our app. Will generate a token on succession.
     }
     ```
 
-## **Login through Google OAuth (backend not finished)**
+## **Login through Google OAuth**
 
 Registering a user through Google OAuth service or logging in a user if the google email already existed in our database.
 
@@ -135,7 +135,11 @@ Registering a user through Google OAuth service or logging in a user if the goog
 
   - **Code:** 201 Created <br />
     **Content:**
-    `javascript { "status": 201, "data": { "id": 3, "email": "thethirdemail@gmail.com", "username": "TheGreatThird" } }`
+    ```javascript
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJmYWRoaWxhaG1ldHJhQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZmFkaGlsYWhtIiwiaWF0IjoxNTg0MDE4MzM4fQ.MLr0RnyHQvRnvSEs6WywGiasHFdL7PMjQ4LGvdor2d4"
+    }
+    ```
 
 - **Error Response:**
 
@@ -143,24 +147,9 @@ Registering a user through Google OAuth service or logging in a user if the goog
     **Content:**
     ```javascript
     {
-        "status": 400,
+        "status": 500,
         "msg": [
-            "Email has already been used"
-        ]
-    }
-    ```
-
-  OR
-
-  - **Code:** 400 Bad Request <br />
-    **Content:**
-    ```javascript
-    {
-        "status": 400,
-        "msg": [
-            "Email must be filled",
-            "Password must be filled",
-            "Username must be filled"
+            "Fail connecting with Google OAuth"
         ]
     }
     ```
