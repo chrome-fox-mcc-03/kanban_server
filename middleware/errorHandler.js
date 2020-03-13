@@ -1,5 +1,5 @@
 const {Sequelize} = require("../models")
-const customError = require("../helpers/errorModel.js")
+const {customError} = require("../helpers/errorModel.js")
 
 function errorHandling(err, req, res, next) {
     if(err instanceof Sequelize.EmptyResultError) {

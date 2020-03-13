@@ -1,5 +1,5 @@
 const { verifyToken } = require("../helpers/jwt.js")
-const customError = require("../helpers/errorModel.js")
+const {customError} = require("../helpers/errorModel.js")
 const { User } = require("../models")
 let token
 let payload

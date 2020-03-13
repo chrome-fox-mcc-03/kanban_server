@@ -1,5 +1,5 @@
 const { Task } = require("../models")
-const  customError  = require("../helpers/errorModel.js")
+const  {customError}  = require("../helpers/errorModel.js")
 
 function authorization(req, res, next) {
 

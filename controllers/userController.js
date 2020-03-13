@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require("../models")
 const { checkPassword } = require("../helpers/bcrypt.js")
 const { createToken } = require("../helpers/jwt.js")
-const customError = require("../helpers/errorModel.js")
+const {customError} = require("../helpers/errorModel.js")
 const { OAuth2Client } = require('google-auth-library')
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
 const Op = sequelize.Op
@@ -86,10 +86,10 @@ class UserController {
                     // req.payload = payload
                     res.status(200).json({token: accessToken})
                 } else {
-                    throw new CustomError(400, "WRONG PASSWORD/EMAIL")
+                    throw new customError(400, "WRONG PASSWORD/EMAIL")
                 }
             } else {
-                throw new CustomError(400, "WRONG PASSWORD/EMAIL")
+                throw new customError(400, "WRONG PASSWORD/EMAIL")
             }
         })
         .catch(err => {

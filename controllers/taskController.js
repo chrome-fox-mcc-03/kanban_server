@@ -1,5 +1,5 @@
 const { Task, User } = require("../models")
-const customError = require("../helpers/errorModel.js")
+const {customError} = require("../helpers/errorModel.js")
 // const restdb = require("../helpers/thirdParty.js")
 
 class TaskController {
