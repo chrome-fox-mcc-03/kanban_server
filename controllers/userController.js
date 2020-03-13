@@ -5,7 +5,7 @@ const { checkPassword } = require("../helpers/bcrypt.js")
 const { createToken } = require("../helpers/jwt.js")
 const {customError} = require("../helpers/errorModel.js")
 const { OAuth2Client } = require('google-auth-library')
-const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const Op = sequelize.Op
 let emailAddress
 let userId
