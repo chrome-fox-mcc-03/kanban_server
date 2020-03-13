@@ -24,6 +24,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     UserId: DataTypes.INTEGER
   },{
+    validate : {
+      isTitleNull(){
+        if (!this.title){
+          throw new Error ('Title cannot be empty');
+        }
+      }
+
+    },
     sequelize,
     modelName : 'Task'
   })
