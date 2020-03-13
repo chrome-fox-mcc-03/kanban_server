@@ -6,7 +6,13 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING
     },
     description: {
-      type:DataTypes.STRING
+      type:DataTypes.STRING,
+      validate: {
+        len: {
+          args:[2],
+          msg:"description min 2 characters"
+        }
+      }
     },
     UserId: {
       type:DataTypes.INTEGER

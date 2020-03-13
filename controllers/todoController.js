@@ -12,7 +12,6 @@ class TodoController {
             UserId
         })
         .then((result) => {
-            // console.log(result,'======================================================================================')
             res.status(200).json({name_box,description})
         }).catch((err) => {
             next(err)
@@ -44,7 +43,7 @@ class TodoController {
             description
         },{where:{id}})
         .then((result) => {
-            res.status(200).json(result)   
+            res.status(200).json(result)
         }).catch((err) => {
             next(err)
         });
