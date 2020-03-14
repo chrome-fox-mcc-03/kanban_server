@@ -27,8 +27,10 @@ class CollaborationController {
     }
 
     static delete(req, res, next) {
-        const id = req.params.id
-        Collaboration.destroy({ where: { id } })
+        const ProjectId = req.query.ProjectId;
+        const UserId = req.query.UserId
+
+        Collaboration.destroy({ where: { UserId, ProjectId } })
             .then(result => {
                 res.status(200).json({ msg: `User removed from the Project!`, collaboration: result })
             })
