@@ -4,7 +4,7 @@ const UserController = require('../controller/usercontroller')
 const authentication = require('../middleware/authentication')
 const authorization = require('../middleware/authorization')
 
-ProjectRoute.get('/', Controller.findProject)
+ProjectRoute.get('/',authentication, Controller.findProject)
 ProjectRoute.post('/project', authentication, Controller.GenerateProject)
 ProjectRoute.post('/project/create', authentication, Controller.createProject)
 ProjectRoute.post('/project/task/create', authentication, Controller.createTask)
