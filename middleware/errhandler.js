@@ -6,7 +6,7 @@ module.exports = function(err, req, res, next) {
                 let msg = {
                     msg: 'Bad Request'
                 }
-                res.status(400).json(msg)
+                res.status(400).json(err)
                 break;
         }
     }
