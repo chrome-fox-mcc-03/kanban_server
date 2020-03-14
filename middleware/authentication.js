@@ -2,9 +2,7 @@ const { User } = require('../models')
 const { decode } = require('../helper/jwt')
 
 module.exports = (req, res, next) => {
-  console.log(req.headers.token)
   const accses_token = decode(req.headers.token)
-  console.log(accses_token)
   req.currentId = accses_token.payload.id
   try {
     User.findOne({
