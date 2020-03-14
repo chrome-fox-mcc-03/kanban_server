@@ -1,5 +1,5 @@
-const express = require('express').Router()
-const router = express
+const express = require('express').Router
+const router = express()
 const authentication = require('../middleware/authentication')
 const authorizedUser =require('../middleware/authorizedUser')
 const ControllerKanban =require('../controller/controllerKanban')
