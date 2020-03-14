@@ -52,7 +52,7 @@ class UserController {
                         console.log('>>>> SIGN IN SUCCESS <<<<');
                         const payload = { id: user.id, name: user.name, email: user.email };
                         const access_token = generateToken(payload);
-                        res.status(200).json({ access_token })
+                        res.status(200).json({ access_token, name: payload.name })
                     } else {
                         res.status(400).json({ status: 400, message: 'Invalid email/password' })
                     }
