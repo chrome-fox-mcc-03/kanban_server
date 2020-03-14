@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull : true,
       validate : {
-        email : {
+        isEmail : {
           args : true,
           msg : "please insert email with @"
         }
