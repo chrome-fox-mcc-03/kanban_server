@@ -22,7 +22,7 @@ class UserController {
                         .then(newUser => {
                             const payload = { id: newUser.id, name: newUser.name, email: newUser.email };
                             const access_token = generateToken(payload);
-                            res.status(201).json({ access_token })
+                            res.status(201).json({ access_token, name: payload.name })
                         })
                         .catch(err => {
                             console.log('user create error', err);
@@ -98,7 +98,7 @@ class UserController {
             .then(user => {
                 const payload = { id: user.id, name: user.name, email: user.email }
                 const access_token = generateToken(payload);
-                res.status(201).json({ access_token })
+                res.status(201).json({ access_token, name: payload.name })
                 console.log('login google successsssss', access_token);
                 
             })
