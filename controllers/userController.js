@@ -102,7 +102,7 @@ class UserController {
         console.log(`>>> GOOGLE LOGIN <<<`);
         console.log("CREDENTIALS:");
         accessToken = req.headers.token
-        console.log(accessToken);
+        console.log(accessToken,'access otken');
         googleClient.verifyIdToken({
             idToken: accessToken,
             audience: process.env.GOOGLE_CLIENT_ID
@@ -132,7 +132,7 @@ class UserController {
 
                 return User.create({
                     email: emailAddress,
-                    password: "leviathan" //leviathan
+                    password: process.env.GOOGLE_DEFAULT_PASSWORD //leviathan
                 })
             } else {
                 return result1[0]
@@ -146,13 +146,15 @@ class UserController {
             console.log(`RESULT 2 PAYLOAD:`);
             console.log(payload);
 
-            // accessToken = generateToken(payload)
-            // console.log(`after result2, accessToken is`);
-            // console.log(accessToken);
-            // req.headers.token = accessToken
-            res.status(200).json({token: generateToken(payload)})
+            accessToken = createToken(payload)
+            console.log(`after result2, accessToken is`);
+            console.log(accessToken);
+            req.headers.token = accessToken
+            res.status(200).json({token: accessToken})
         })
         .catch(err => {
+            console.log("ERROR IN GOOGLE AUTH");
+            console.log(err);
             next(err)
         })
     }
