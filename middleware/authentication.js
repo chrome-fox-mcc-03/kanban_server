@@ -20,26 +20,26 @@ function authentication(req, res, next) {
                 id: payload.id
             }
         })
-            .then(response => {
-                console.log(`USER FOUND`);
-                console.log(response);
-                console.log(`RESPONSE ID:`);
-                console.log(response[0].id);
-                if(response[0].id === payload.id) {
-                    console.log(`AUTHENTICATION PASSED!`)
-                    req.decoded = payload
-                    next()
-                } else {
-                    console.log("AUTHENTICATION FAILED!");
-                    throw new customError(400, "Unauthorized Access!")
-                }
-            })
+        .then(response => {
+            console.log(`USER FOUND`);
+            console.log(response);
+            console.log(`RESPONSE ID:`);
+            console.log(response[0].id);
+            if(response[0].id === payload.id) {
+                console.log(`AUTHENTICATION PASSED!`)
+                req.decoded = payload
+                next()
+            } else {
+                console.log("AUTHENTICATION FAILED!");
+                throw new customError(400, "Unauthorized Access!")
+            }
+        })
     }
-     catch(err) {
-         console.log("ERROR AUTHENTICATING");
-         console.log(err);
-         next(err)
-     }
+    catch(err) {
+        console.log("ERROR AUTHENTICATING");
+        console.log(err);
+        next(err)
+    }
 }
 
 module.exports = authentication
