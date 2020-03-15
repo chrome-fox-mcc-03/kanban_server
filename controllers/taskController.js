@@ -133,23 +133,28 @@ class TaskController {
         console.log(req.decoded);
         // console.log(`payload is`);
         // console.log(req.payload);
-        Task.findByPk(+req.params.id)
-        .then(task => {
-            console.log(`RECOVERED TODO: `);
-            console.log(todo);
-            res.status(200).json({data:task, message: "Entry found", decoded:req.decoded})
-            // if(todo) {
-            //     res.status(200).json({todo:todo, message: "Entry found", decoded:req.decoded})
-            // } 
-            // else {
-            //     console.log(`BAD MOVE! NOT FOUND!`);
-            //     // res.status(404).json({error: "Entry Not Found"})
-            //     throw new CustomError(404, "ENTRY NOT FOUND")
-            // }
+        console.log("REQ PARAMS");
+        console.log(req.params);
+        Task.findAll({
+            where: {
+                id: +req.params.id
+            }
         })
-        .catch(err => {
-            next(err)
-        })
+            .then(response => {
+                console.log(`RECOVERED TODO: `);
+                console.log(response);
+                if(response) {
+                    res.status(200).json({data:response, message: "Entry found", decoded:req.decoded})
+                } 
+                else {
+                    console.log(`BAD MOVE! NOT FOUND!`);
+                 // res.status(404).json({error: "Entry Not Found"})
+                    throw new customError(404, "ENTRY NOT FOUND")
+                }
+            })
+            .catch(err => {
+                next(err)
+            })
     }
 
     static update(req, res, next) {

@@ -1,15 +1,13 @@
-# kanban_server
-
-**FANCY TODO**
+# KANBAN
 -----------
 
-**Create Todo**
+**Create Task**
 ----
-  Create new to-do activity.
+  Create new task.
 
 * **URL**
 
-  /todos/
+  /tasks/
 
 * **Method:**
 
@@ -18,39 +16,27 @@
 *  **URL Params**
     None
 
-* **Data Params**<br>
-  `{ "title" : "Eureka", "description" : "Archimedes", "status" : ["pending", "done"], "due-date" : "2020-08-08" }`<br>
+* **Body/Form Params**<br>
   **Required**
   - `title` : string
-  - `description` : string
-  - `status` :  string (pending/done)
+  - `category` : string (backlog, requested, wip, done)
   - `due_date` : date (YYYY-MM-DD)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:**<br>
      `{
-    "id": 6,
-    "title": "halal bihalal",
-    "description": "rangka hari raya",
-    "status": "pending",
-    "due_date": "2020-05-27T00:00:00.000Z",
-    "updatedAt": "2020-03-02T10:10:40.754Z",
-    "createdAt": "2020-03-02T10:10:40.754Z"
-}`<br>
-<br>
-   **OR**
-   <BR>
-   `{
-    "id": 12,
-    "title": "nyebat",
-    "description": "nyebat",
-    "status": "pending",
-    "due_date": "2020-08-07T17:00:00.000Z",
-    "updatedAt": "2020-03-02T15:19:24.046Z",
-    "createdAt": "2020-03-02T15:19:24.046Z"
-}`<br><br>
+      "id": 6,
+      "title": "halal bihalal",
+      "category": "pending",
+      "due_date": "2020-05-27T00:00:00.000Z",
+      "updatedAt": "2020-03-02T10:10:40.754Z",    
+      "createdAt": "2020-03-02T10:10:40.754Z",
+      "UserId": 3
+    }`
+<br><br>
+
  
 * **Error Responses:**
   * **Code:** 400 VALIDATION ERROR <br />
@@ -98,13 +84,13 @@
 <hr>
 <br>
 
-**Read Todos**
+**Read Tasks**
 ----
-  Returns a list of all to-dos
+  Returns a list of all tasks owned by the logging in user
 
 * **URL**
 
-  /todos/
+  /tasks/
 
 * **Method:**
 
@@ -122,33 +108,33 @@
     **Content:**
     <br>
     `{
-    "todos": [
+    "data": [
         {
             "id": 3,
             "title": "beli baju",
-            "description": "rangka hari raya",
-            "status": "pending",
+            "category": "pending",
             "due_date": "2020-05-31T00:00:00.000Z",
             "createdAt": "2020-03-02T08:01:15.475Z",
-            "updatedAt": "2020-03-02T08:01:15.475Z"
+            "updatedAt": "2020-03-02T08:01:15.475Z",
+            "UserId": 3
         },
         {
             "id": 5,
-            "title": "ziarah",
-            "description": "rangka hari raya",
-            "status": "pending",
-            "due_date": "2020-04-24T00:00:00.000Z",
-            "createdAt": "2020-03-02T08:03:47.179Z",
-            "updatedAt": "2020-03-02T08:03:47.179Z"
+            "title": "bikin kue",
+            "category": "wip",
+            "due_date": "2020-05-31T00:00:00.000Z",
+            "createdAt": "2020-03-02T08:01:15.475Z",
+            "updatedAt": "2020-03-02T08:01:15.475Z",
+            "UserId": 3
         },
         {
-            "id": 6,
-            "title": "halal bihalal",
-            "description": "rangka hari raya",
-            "status": "pending",
-            "due_date": "2020-05-27T00:00:00.000Z",
-            "createdAt": "2020-03-02T10:10:40.754Z",
-            "updatedAt": "2020-03-02T10:10:40.754Z"
+            "id": 7,
+            "title": "cuci sprei",
+            "category": "done",
+            "due_date": "2020-05-31T00:00:00.000Z",
+            "createdAt": "2020-03-02T08:01:15.475Z",
+            "updatedAt": "2020-03-02T08:01:15.475Z",
+            "UserId": 3
         }
     ],
     "message": "Here are the complete list"
@@ -189,7 +175,7 @@
 
 **Read Todo By Id**
 ----
-  Returns a to-do activity based on ID
+  Returns a task activity based on ID
 
 * **URL**
 
@@ -210,16 +196,15 @@
   * **Code:** 200 <br />
     **Content:** <br>
     `{
-    "todo": [
+    "data": [
         {
-            "id": 15,
-            "title": "beli kue",
-            "description": "sajen",
-            "status": "pending",
-            "due_date": "2020-04-05T00:00:00.000Z",
-            "UserId": 27,
-            "createdAt": "2020-03-05T03:34:46.593Z",
-            "updatedAt": "2020-03-05T03:34:46.593Z",
+            "id": 3,
+            "title": "beli baju",
+            "category": "pending",
+            "due_date": "2020-05-31T00:00:00.000Z",
+            "createdAt": "2020-03-02T08:01:15.475Z",
+            "updatedAt": "2020-03-02T08:01:15.475Z",
+            "UserId": 3,
             "User": {
                 "id": 27,
                 "email": "maxwell.hamzah@gmail.com"
@@ -255,11 +240,11 @@
 
 **Update Todo**
 ----
-  Update to-do entry by Id.
+  Update task entry by Id.
 
 * **URL**
 
-  /todos/:id
+  /tasks/:id
 
 * **Method:**
 
@@ -268,12 +253,10 @@
 *  **URL Params**
     `:id [integer]`
 
-* **Data Params**<br>
-  `{ "title" : "Eureka", "description" : "Archimedes", "status" : ["pending", "done"], "due-date" : "2020-08-08" }`<br>
+* **Body/Form Params**<br>
   **Required**
   - `title` : string
-  - `description` : string
-  - `status` :  string
+  - `category` : string (backlog, requested, wip, done)
   - `due_date` : date (YYYY-MM-DD)
 
 * **Success Response:**
@@ -281,15 +264,15 @@
   * **Code:** 200 <br />
     **Content:** <br>
     `{
-    "todo": [
+    "data": [
         {
             "id": 3,
-            "title": "bikin nastar",
-            "description": "hari raya",
-            "status": "pending",
-            "due_date": "2020-05-01T00:00:00.000Z",
+            "title": "beli baju",
+            "category": "pending",
+            "due_date": "2020-05-31T00:00:00.000Z",
             "createdAt": "2020-03-02T08:01:15.475Z",
-            "updatedAt": "2020-03-02T10:44:33.300Z"
+            "updatedAt": "2020-03-02T08:01:15.475Z",
+            "UserId": 3
         }
     ],
     "message": "Entry updated"
@@ -342,13 +325,13 @@
 <hr>
 <br>
 
-**Delete Todo**
+**Delete Task**
 ----
-  Delete to-do entry by Id.
+  Delete task entry by Id.
 
 * **URL**
 
-  /todos/:id
+  /tasks/:id
 
 * **Method:**
 
@@ -447,7 +430,7 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:**<br>
     `{
     "datum": {
@@ -489,13 +472,13 @@
 <hr>
 <br>
 
-**Signin**
+**Login**
 ----
   Login user
 
 * **URL**
 
-  /users/signin
+  /users/login
 
 * **Method:**
 
