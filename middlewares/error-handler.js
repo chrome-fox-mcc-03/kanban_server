@@ -9,7 +9,6 @@ const errorHandler = (err, req, res, _) => {
 console.error(err);
   switch (err.name) {
     case 'SequelizeValidationError':
-      console.log('masuk di validation error ========');
       obj.message = 'Bad Request'
       status = 400;
       obj.status = status;
