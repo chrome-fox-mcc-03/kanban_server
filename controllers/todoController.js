@@ -29,7 +29,18 @@ class Controller {
             })
     }
     static update(req, res, next) {
-        let u
+        let editData = {
+            title: req.body.title,
+            description: req.body.desciption,
+            status: req.body.status,
+        }
+        Todo.update(editData, {where: {id: req.params.id}})
+            .then(todo => {
+                if(todo[0] == 0) throw {status: 404, customName: 'Item not found!'}
+                else return Todo.findOne({where: {id: req.params.id}})
+            })
+            .then(todo => res.status(201).json(todo))
+            .catch(err => next(err))
     }
     static delete(req, res, next) {
         

@@ -11,7 +11,7 @@ router.post('/login', userController.login)
 router.use('/todo', authentication)
 router.post('/todo/create', todoController.create)
 router.get('/todo/read', todoController.read)
-router.patch('/todo/update/:id', authorization, todoController.update)
+router.put('/todo/update/:id', authorization, todoController.update)
 router.delete('/todo/delete/:id', authorization, todoController.delete)
 
 module.exports = router
