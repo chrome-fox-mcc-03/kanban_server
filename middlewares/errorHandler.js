@@ -25,11 +25,11 @@ function errorHandler(err, req, res, next) {
         statusCode = 400
         error = 'email/password wrong'
         res.status(statusCode).json({ error })
-    } else if(err.name === 'AlreadyRegistered') {
+    } else if (err.name === 'AlreadyRegistered') {
         statusCode = 400
         error = 'Email already registered'
-        res.status(statusCode).json({ error})
-    } else  {
+        res.status(statusCode).json({ error })
+    } else {
         res.status(statusCode).json({ error: msg })
     }
 
