@@ -13,6 +13,7 @@ class Controller {
         id: newCategory.id,
         name: newCategory.name,
         UserId: newCategory.UserId,
+        Tasks: []
       };
 
       res.status(201).json(payload);
@@ -29,7 +30,7 @@ class Controller {
         },
         include: [{
           model: Task,
-          attributes: ['id', 'title']
+          attributes: ['id', 'title', 'CategoryId']
         }]
       });
 
