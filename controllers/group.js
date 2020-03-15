@@ -4,7 +4,7 @@ module.exports = {
   createGroup(req, res, next) {
     const { group_name } = req.body
     const { id } = req.decoded
-    
+
     Group.create({
       group_name
     })
@@ -23,7 +23,7 @@ module.exports = {
   },
   findAllGroup(req, res, next) {
     const { id } = req.decoded
-    
+
     GroupUser.findAll({
       where: { UserId: id },
       include: [Group, User]
@@ -39,12 +39,12 @@ module.exports = {
     const { email } = req.body
     const { id } = req.params
     let username = ''
-    
+
     User.findOne({
       where: { email }
     })
       .then(data => {
-        if(data) {
+        if (data) {
           username = data.username
           return GroupUser.create({
             UserId: data.id,
@@ -60,6 +60,19 @@ module.exports = {
       .then(_ => {
         res.status(201).json({
           message: `Success invite ${username}`
+        })
+      })
+      .catch(next)
+  },
+  deleteGroup(req, res, next) {
+    const { id } = req.params
+
+    Group.destroy({
+      where: { id }
+    })
+      .then(_ => {
+        res.status(200).json({
+          message: 'Success delete group'
         })
       })
       .catch(next)

@@ -76,7 +76,6 @@ module.exports = {
   isMember(req, res, next) {
     const { id } = req.decoded
     const GroupId = req.headers.groupid
-    console.log(id, GroupId)
 
     GroupUser.findOne({
       where: { UserId: id, GroupId }

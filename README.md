@@ -215,6 +215,54 @@
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ message: "Internal Server Error" }`
 
+**Delete Group**
+----
+  
+* **URL**
+
+  `http://localhost:3000/group/:id`
+
+* **Method:**
+
+  `delete`
+  
+*  **URL Params**
+
+    **Required:**
+
+    `id=[integer]`
+
+* **Data Params**
+
+    None
+
+*  **URL headers**
+
+    **Required:**
+
+    `token=[string]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+
+  ```javascript
+    {
+      message: "Success delete group"
+    }
+  ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ message: "Group not found" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ message: "Internal Server Error" }`
+
 **Invite User To Group**
 ----
   
@@ -301,7 +349,7 @@
 
     `token=[string]`
 
-    `GroupId=[integer]`
+    `groupid=[integer]`
 
 * **Success Response:**
 
@@ -354,7 +402,9 @@
 
     `token=[string]`
 
-    `GroupId=[integer]`
+    `groupid=[integer]`
+
+    `categoryid=[integer]`
 
 * **Success Response:**
 
@@ -410,7 +460,9 @@
 
     `token=[string]`
 
-    `GroupId=[integer]`
+    `groupid=[integer]`
+
+    `categoryid=[integer]`
 
 * **Success Response:**
 
@@ -460,7 +512,9 @@
 
     `token=[string]`
 
-    `GroupId=[integer]`
+    `groupid=[integer]`
+
+    `categoryid=[integer]`
 
 * **Success Response:**
 
@@ -474,6 +528,65 @@
   ```
  
 * **Error Response:**
+
+  * **Code:** 404 BAD REQUEST <br />
+    **Content:** `{ message: "Task not found" }`
+
+  OR
+
+  * **Code:** 500 INTERNAL SERVER ERROR <br />
+    **Content:** `{ message: "Internal Server Error" }`
+
+**Find One Task**
+----
+  
+* **URL**
+
+  `http://localhost:3000/task/:id`
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+    **Required:**
+
+    `id=[integer]`
+
+* **Data Params**
+
+    None
+
+*  **URL headers**
+
+    **Required:**
+
+    `token=[string]`
+
+    `groupid=[integer]`
+
+    `categoryid=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+
+  ```javascript
+    {
+      data: {
+        <Data>
+      }
+    }
+  ```
+ 
+* **Error Response:**
+
+  * **Code:** 404 BAD REQUEST <br />
+    **Content:** `{ message: "Task not found" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ message: "Internal Server Error" }`

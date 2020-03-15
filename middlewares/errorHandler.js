@@ -2,7 +2,6 @@ module.exports = (err, req, res, next) => {
   let status  = 500
   let message = 'Internal Server Error'
 
-  console.log(err, '<========ERROR=======>')
   if(err.name === 'SequelizeUniqueConstraintError') {
     let error = []
     
@@ -25,6 +24,8 @@ module.exports = (err, req, res, next) => {
   } else if(err.message === 'jwt must be provided') {
     status = 401
     message = 'You must login first'
+  } else if(err.name === 'SequelizeDatabaseError') {
+    message ='SequelizeDatabaseError'
   }
 
   res.status(status).json({

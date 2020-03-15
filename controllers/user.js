@@ -1,5 +1,7 @@
 const { User } = require('../models')
 const { checkPassword, createToken } = require('../helpers')
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.CLIENT_ID);
 
 module.exports = {
   register(req, res, next) {
@@ -49,6 +51,41 @@ module.exports = {
       .catch(next)
   },
   gLogin(req, res, next) {
-    
+    let email = ''
+    let username = ''
+
+    client.verifyIdToken({
+      idToken: req.headers.token,
+      audience: process.env.CLIENT_ID
+    })
+      .then(data => {
+        email = data.payload.email
+        username = data.payload.name
+        
+        return User.findOne({ where: { email } })
+      })
+      .then(data => {
+        if (!data) {
+          return User.create({
+            username,
+            email,
+            password: process.env.PASSWORD
+          })
+        } else {
+          return data
+        }
+      })
+      .then(data => {
+        const token = createToken({
+          id: data.id,
+          email
+        })
+        
+        res.status(200).json({
+          token,
+          message: `Success login as ${data.username}`
+        })
+      })
+      .catch(next)
   }
 }

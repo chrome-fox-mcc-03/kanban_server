@@ -34,6 +34,7 @@ module.exports = {
   updateTask(req, res, next) {
     const { id } = req.params
     const { title, description, CategoryId } = req.body
+    const { catId } = req.headers
 
     Task.update({
       title, description, CategoryId
@@ -42,6 +43,7 @@ module.exports = {
     })
       .then(_ => {
         res.status(200).json({
+          catId,
           message: 'Success update Task'
         })
       })
@@ -49,12 +51,14 @@ module.exports = {
   },
   deleteTask(req, res, next) {
     const { id } = req.params
+    const { catId } = req.headers
 
     Task.destroy({
       where: { id }
     })
       .then(_ => {
         res.status(200).json({
+          catId,
           message: 'Success delete Task'
         })
       })
