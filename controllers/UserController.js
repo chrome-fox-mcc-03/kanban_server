@@ -15,13 +15,13 @@ module.exports =
             message: 'Wrong email / password'
           })
           else {
-            if (!compare(password !== user.password)) next({
+            if (!compare(password, user.password)) next({
               status: 401,
               message: 'Wrong email / password'
             })
             else {
               const token = createToken(user.id)
-              res.status(200).json({ token })
+              res.status(200).json({ token, username: user.username })
             }
           }
         })
@@ -30,6 +30,7 @@ module.exports =
 
     static register (req, res, next) {
       const { username, email, password } = req.body
+      console.log(username, email)
       User.create({ username, email, password })
         .then(() => res.status(201).json({ message: 'Register successful' }))
         .catch(next)
