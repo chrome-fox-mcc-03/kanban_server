@@ -1,4 +1,4 @@
-const { Item } = require('../models/index');
+const { Item, User } = require('../models/index');
 const { getPayload } = require('../helper/jwt');
 
 class ItemController {
@@ -22,11 +22,40 @@ class ItemController {
         .catch(next);
     }
     static findMyItems(req, res, next) {
-        // res.status(200).json("get item oke")
-        
         Item.findAll({
             where: {
-                // UserId: req.appUser.id,
+                UserId: req.appUser.id,
+            },
+            include: [{
+                model: User, 
+                attributes: ['id', 'name', 'email', 'avaurl'],
+            }]
+        })
+        .then(result => {
+            res.status(200).json(result);
+        })
+        .catch(next);
+    }
+    static updateItem(req, res, next) {
+        let id = req.params.id;
+        let body = {};
+
+        Item.update({}, {
+            where: {
+                id
+            }
+        })
+        .then(result => {
+
+        })
+        .catch(next);
+    }
+    static deleteMyItem (req, res, next) {
+        let id = req.params.id;
+
+        Item.delete({
+            where: {
+                id
             }
         })
         .then(result => {

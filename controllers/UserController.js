@@ -5,8 +5,6 @@ const { getToken, getPayload } = require('../helper/jwt');
 
 class UserController {
     static register (req, res, next) {
-        // res.status(200).json({msg: "oke"})
-        // res.status(201).json(req.body);
         let obj = {
             name: req.body.name,
             email: req.body.email,
