@@ -4,20 +4,22 @@ module.exports = (sequelize, DataTypes) => {
   class Collaboration extends Model { }
   Collaboration.init({
     UserId: {
-      type: DataTypes.INTEGER, allowNull: false,
+      type: DataTypes.INTEGER, 
+      allowNull: false,
       validate: {
-        notNull: {
+        notEmpty: {
           args: true,
           msg: `UserId can't be blank`,
         }
       }
     },
     ProjectId: {
-      type: DataTypes.INTEGER, allowNull: false,
+      type: DataTypes.INTEGER, 
+      allowNull: false,
       validate: {
-        notNull: {
+        notEmpty: {
           args: true,
-          msg: `UserId can't be blank`,
+          msg: `ProjectId can't be blank`,
         }
       }
     }

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull: {
+        notEmpty: {
           args: true,
           msg: `Task name can't be blank`,
 
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notNull: {
+        notEmpty: {
           args: true,
           msg: `Task description can't be blank`,
         }
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notNull: {
+          notEmpty: {
             args: true,
             msg: `CategoryId can't be blank`,
           }
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notNull: {
+          notEmpty: {
             args: true,
             msg: `ProjectId can't be blank`,
           }

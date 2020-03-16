@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING, allowNull: false,
       validate: {
-        notNull: {
+        notEmpty: {
           args: true,
           msg: `Project name can't be blank`,
 

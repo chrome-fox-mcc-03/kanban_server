@@ -150,6 +150,12 @@
 
 * **Error Response :**
 
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -192,6 +198,11 @@
 
 * **Error Response :**
 
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -231,6 +242,15 @@
 
 * **Error Response :**
 
+  * **Code:** 400 <br />
+    **Content:** `{ errors: 
+    [
+      "UserId can't be blank", 
+      "ProjectId can't be blank"
+    ] }`
+
+    OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -264,6 +284,11 @@
 }`
 
 * **Error Response :**
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
@@ -319,6 +344,12 @@
 
 * **Error Response :**
 
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -361,6 +392,11 @@
 
 * **Error Response :**
 
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -381,8 +417,7 @@
     `access_token`
 * **Data Params**
 
-  `{
-    "name": "Project Name" }`
+  `{ "name": "Project Name" }`
 
 * **Success Response :**
 
@@ -398,6 +433,20 @@
     }`
 
 * **Error Response :**
+
+  * **Code:** 400 <br />
+    **Content:** `{ errors: 
+    [
+      "Project name can't be blank"
+    ] }`
+
+    OR
+
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
@@ -434,6 +483,13 @@
   }`
 
 * **Error Response :**
+
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+    OR
+
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
@@ -479,6 +535,12 @@
 
 * **Error Response :**
 
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -512,6 +574,11 @@
     }`
 
 * **Error Response :**
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
@@ -554,6 +621,11 @@
     }`
 
 * **Error Response :**
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
@@ -598,6 +670,11 @@
 
 * **Error Response :**
 
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -641,6 +718,11 @@
 
 * **Error Response :**
 
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
+
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`
 
@@ -672,6 +754,12 @@
       }`
 
 * **Error Response :**
+
+
+  * **Code:** 401 <br />
+    **Content:** `{ error: "Unauthorized" }`
+
+  OR
 
   * **Code:** 500 INTERNAL SERVER ERROR <br />
     **Content:** `{ error : "Internal Server Error" }`

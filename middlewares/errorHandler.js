@@ -1,14 +1,9 @@
 function errorHandler(err, req, res, next) {
-    console.log(err)
-
     let statusCode = 500
     let msg = 'Internal Server Error'
-
     if (err.name === 'SequelizeValidationError') {
-
         statusCode = 400
         let errors = []
-
         err.errors.forEach(error => {
             errors.push(error.message)
         });
