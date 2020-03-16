@@ -3,38 +3,38 @@
 ## **Register**
 Add a new user to sign up 
 
-*   **URL**
+* **URL**
 
     _/register_
 
-*   **Method**
+* **Method**
 
-    `POST`
+  `POST`
 
-*   **Headers**
-    **Required**
+* **Headers**
+  **Required**
 
-    None
+  None
 
 * **Data Body**
 
-    `email=[string]`<br>
-    `password=[string]` <br>
+  `email=[string]`<br>
+  `password=[string]` <br>
 
 * **Success Response**
-  *  **Code:** 201
-  *  **Content:**
-      ```javascript
-      {
-          "User": {
-              "id": 1,
-              "email": "mail@mail.com"
-          },
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYWlsQG1haWwuY29tIiwiaWF0IjoxNTgzOTM0Mzc3fQ.fACBC0005EbIv2JxJLWJGULN0ub6QOy_oukJvQY0IsQ"
-      }
-      ````
+  * **Code:** 201
+  * **Content:**
+    ```javascript
+    {
+        "User": {
+            "id": 1,
+            "email": "mail@mail.com"
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYWlsQG1haWwuY29tIiwiaWF0IjoxNTgzOTM0Mzc3fQ.fACBC0005EbIv2JxJLWJGULN0ub6QOy_oukJvQY0IsQ"
+    }
+    ````
 
-      OR
+    OR
 
 * **Error Response:**
   * **Code:** 400
@@ -90,7 +90,9 @@ Login to Kanban
     {
       "error": "Email or password is wrong" 
     }
+    ```
  
+
 ## **Show All Tasks**
 Show All Tasks
 
@@ -150,215 +152,216 @@ Show All Tasks
     {
       "error": "Internal Server Error"  
     }
+    ```
  
 
 ## **Create a New Task**
 Add a new task
 
-*   **URL**
+* **URL**
 
-    _/tasks/_
+  _/tasks/_
 
-*   **Method**
+* **Method**
 
-    `POST`
+  `POST`
 
-*   **Headers**
-    **Required:**
+* **Headers**
+  **Required:**
 
-    `token`
+  `token`
 
-*   **URL Params**
-    **Required:**
+* **URL Params**
+  **Required:**
 
-    None
+  None
 
-*   **Data Body**
+* **Data Body**
 
-    `description=[string]`
+  `description=[string]`
 
-*   **Success Response:**
-    * **Code:** 201
-    * **Content:** 
-      ```javascript
+* **Success Response:**
+  * **Code:** 201
+  * **Content:** 
+    ```javascript
+    {
+        "data": {
+            "id": 1,
+            "description": "ngerjain kanban",
+            "CategoryId": 1,
+            "UserId": 1,
+            "updatedAt": "2020-03-11T14:01:33.330Z",
+            "createdAt": "2020-03-11T14:01:33.330Z"
+        }
+    }
+    ```
+
+    OR
+
+* **Error Response:**
+  * **Code:** 500
+  * **Content:** 
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
+
+
+## **FindOne task by Id**
+find one task from kanban by id 
+
+* **URL**
+
+  _/tasks/:id_
+
+* **Method**
+
+  `GET`
+
+* **Headers**
+  **Required:**
+
+  `token`
+
+* **URL Params**
+  **Required:**
+  
+  `id=[integer]`
+
+* **Data Body**
+
+  None
+
+* **Success Response:**
+  * **Code:** 200
+  * **Content:** 
+    ```javascript
+    {
+        "data": {
+            "id": 2,
+            "description": "fancy-todo",
+            "CategoryId": 1,
+            "UserId": 1,
+            "createdAt": "2020-03-11T14:13:42.386Z",
+            "updatedAt": "2020-03-11T14:13:42.386Z"
+        }
+    }
+    ```
+
+    OR
+
+* **Error Response:**
+  * **Code:** 500
+  * **Content:** 
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
+
+
+## **Delete task by Id**
+Delete task by id 
+
+* **URL**
+
+  _/tasks/:id_
+
+* **Method**
+
+  `DELETE`
+
+* **Headers**
+  **Required:**
+
+  `token`
+
+* **URL Params**
+  **Required:**
+  
+  `id=[integer]`
+
+* **Data Body**
+
+  None
+
+* **Success Response:**
+  * **Code:** 200
+  * **Content:** 
+    ```javascript
       {
           "data": {
               "id": 1,
               "description": "ngerjain kanban",
               "CategoryId": 1,
               "UserId": 1,
-              "updatedAt": "2020-03-11T14:01:33.330Z",
-              "createdAt": "2020-03-11T14:01:33.330Z"
+              "createdAt": "2020-03-11T14:01:33.330Z",
+              "updatedAt": "2020-03-11T14:01:33.330Z"
           }
       }
       ```
 
-      OR
+    OR
 
-*   **Error Response:**
-    * **Code:** 500
-    * **Content:** 
-      ```javascript
-      {
-        "error": "Internal Server Error" 
-      }
-      ```
-
-
-## **FindOne task by Id**
-find one task from kanban by id 
-
-*   **URL**
-
-    _/tasks/:id_
-
-*   **Method**
-
-    `GET`
-
-*   **Headers**
-    **Required:**
-
-    `token`
-
-*   **URL Params**
-    **Required:**
-  
-    `id=[integer]`
-
-*   **Data Body**
-
-    None
-
-*   **Success Response:**
-    * **Code:** 200
-    * **Content:** 
-      ```javascript
-      {
-          "data": {
-              "id": 2,
-              "description": "fancy-todo",
-              "CategoryId": 1,
-              "UserId": 1,
-              "createdAt": "2020-03-11T14:13:42.386Z",
-              "updatedAt": "2020-03-11T14:13:42.386Z"
-          }
-      }
-      ```
-
-      OR
-
-*   **Error Response:**
-    * **Code:** 500
-    * **Content:** 
-      ```javascript
-      {
-        "error": "Internal Server Error" 
-      }
-      ```
-
-
-## **Delete task by Id**
-Delete task by id 
-
-*   **URL**
-
-    _/tasks/:id_
-
-*   **Method**
-
-    `DELETE`
-
-*   **Headers**
-    **Required:**
-
-    `token`
-
-*   **URL Params**
-    **Required:**
-  
-    `id=[integer]`
-
-*   **Data Body**
-
-    None
-
-*   **Success Response:**
-    * **Code:** 200
-    * **Content:** 
-      ```javascript
-        {
-            "data": {
-                "id": 1,
-                "description": "ngerjain kanban",
-                "CategoryId": 1,
-                "UserId": 1,
-                "createdAt": "2020-03-11T14:01:33.330Z",
-                "updatedAt": "2020-03-11T14:01:33.330Z"
-            }
-        }
-        ```
-
-      OR
-
-*   **Error Response:**
-    * **Code:** 500
-    * **Content:** 
-      ```javascript
-      {
-        "error": "Internal Server Error" 
-      }
-      ```
+* **Error Response:**
+  * **Code:** 500
+  * **Content:** 
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
 
 
 ## **Update Task by Id** 
 Edit a task by id
 
-*   **URL**
+* **URL**
 
-    _/tasks/:id_
+  _/tasks/:id_
 
-*   **Method**
+* **Method**
 
     `PUT`
 
-*   **Headers**
-    **Required:**
+* **Headers**
+  **Required:**
 
-    `token`
+  `token`
 
-*   **URL Params**
-    **Required:**
+* **URL Params**
+  **Required:**
 
-    `id:[integer]`
+  `id:[integer]`
 
-*   **Data Body**
+* **Data Body**
 
-    `description=[string]`
+  `description=[string]`
 
-*   **Success Response:**
-    * **Code:** 200
-    * **Content:** 
-      ```javascript
-      {
-          "data": {
-              "id": 3,
-              "description": "Update kanban",
-              "CategoryId": 3,
-              "UserId": 1,
-              "createdAt": "2020-03-12T06:03:03.622Z",
-              "updatedAt": "2020-03-12T06:11:08.922Z"
-          }
-      }
-      ```
+* **Success Response:**
+  * **Code:** 200
+  * **Content:** 
+    ```javascript
+    {
+        "data": {
+            "id": 3,
+            "description": "Update kanban",
+            "CategoryId": 3,
+            "UserId": 1,
+            "createdAt": "2020-03-12T06:03:03.622Z",
+            "updatedAt": "2020-03-12T06:11:08.922Z"
+        }
+    }
+    ```
 
-      OR
+    OR
 
-*   **Error Response:**
-    * **Code:** 500
-    * **Content:** 
-      ```javascript
-      {
-        "error": "Internal Server Error"
-      }
-      ```
+* **Error Response:**
+  * **Code:** 500
+  * **Content:** 
+    ```javascript
+    {
+      "error": "Internal Server Error"
+    }
+    ```
