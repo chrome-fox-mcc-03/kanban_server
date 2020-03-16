@@ -91,37 +91,36 @@ Login to Kanban
       "error": "Email or password is wrong" 
     }
  
-
 ## **Show All Tasks**
-Show all tasks
+Show All Tasks
 
-*   **URL**
+* **URL**
 
-    _/tasks/_
+  _/tasks/_
 
-*   **Method**
+* **Method**
 
-    `GET`
+  `GET`
 
-*   **Headers**
-    **Required:**
+* **Headers**
+  **Required:**
 
-    `token`
+  None
 
-*   **URL Params**
-    **Required:**
-  
-    None
+* **URL Params**
+  **Required:**
 
-*   **Data Body**
+  None
 
-    None
+* **Data Body**
 
-*   **Success Response:**
-    * **Code:** 200
-    * **Content:** 
-      ```javascript
-      {
+  None
+
+* **Success Response:**
+  * **Code:** 201
+  * **Content:** 
+    ```javascript
+    {
         "data": [
             {
                 "id": 1,
@@ -138,25 +137,24 @@ Show all tasks
                 "UserId": 1,
                 "createdAt": "2020-03-11T14:13:42.386Z",
                 "updatedAt": "2020-03-11T14:13:42.386Z"
-            },
-        ]
-      }
-      ```
+            }
+    }
+    ```
 
-      OR
+    OR
 
-*   **Error Response:**
-    * **Code:** 500
-    * **Content:** 
-      ```javascript
-      {
-        "error": "Internal Server Error" 
-      }
-      ```
-
+* **Error Response:**
+  * **Code:** 400
+  * **Content:** 
+    ```javascript
+    {
+      "error": "Internal Server Error"  
+    }
+ 
 
 ## **Create a New Task**
 Add a new task
+
 *   **URL**
 
     _/tasks/_
