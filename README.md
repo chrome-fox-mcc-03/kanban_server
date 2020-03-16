@@ -51,7 +51,7 @@ Login to Kanban
 
 * **URL**
 
-  _/login/_
+  _/login_
 
 * **Method**
 
