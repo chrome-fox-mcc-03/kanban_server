@@ -1,7 +1,7 @@
 # kanban_server
 
 ## **Register**
-add a new user to sign up 
+Add a new user to sign up 
 
 *   **URL**
 
@@ -24,26 +24,26 @@ add a new user to sign up
 * **Success Response**
   *  **Code:** 201
   *  **Content:**
-    ```javascript
-    {
-        "User": {
-            "id": 1,
-            "email": "mail@mail.com"
-        },
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYWlsQG1haWwuY29tIiwiaWF0IjoxNTgzOTM0Mzc3fQ.fACBC0005EbIv2JxJLWJGULN0ub6QOy_oukJvQY0IsQ"
-    }
-    ````
+      ```javascript
+      {
+          "User": {
+              "id": 1,
+              "email": "mail@mail.com"
+          },
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYWlsQG1haWwuY29tIiwiaWF0IjoxNTgzOTM0Mzc3fQ.fACBC0005EbIv2JxJLWJGULN0ub6QOy_oukJvQY0IsQ"
+      }
+      ````
 
-    OR
+      OR
 
 * **Error Response:**
   * **Code:** 400
   * **Content:** 
-  ```javascript
-  {
-    "error": "Password has at least 6 characters" 
-  }
-  ```
+    ```javascript
+    {
+      "error": "Password has at least 6 characters" 
+    }
+    ```
 
 
 ## **Login**
@@ -86,11 +86,12 @@ Login to Kanban
 * **Error Response:**
   * **Code:** 400
   * **Content:** 
-  ```javascript
-  {
-    "error": "Email or password is wrong" 
-  }
+    ```javascript
+    {
+      "error": "Email or password is wrong" 
+    }
  
+
 ## **Show All Tasks**
 Show all tasks
 
@@ -119,42 +120,42 @@ Show all tasks
 * **Success Response:**
   * **Code:** 200
   * **Content:** 
-  ```javascript
-  {
-    "data": [
-        {
-            "id": 1,
-            "description": "ngerjain kanban",
-            "CategoryId": 1,
-            "UserId": 1,
-            "updatedAt": "2020-03-11T14:01:33.330Z",
-            "createdAt": "2020-03-11T14:01:33.330Z"
-        },
-        {
-            "id": 2,
-            "description": "fancy-todo",
-            "CategoryId": 1,
-            "UserId": 1,
-            "createdAt": "2020-03-11T14:13:42.386Z",
-            "updatedAt": "2020-03-11T14:13:42.386Z"
-        },
-    ]
-  }
-  ```
+    ```javascript
+    {
+      "data": [
+          {
+              "id": 1,
+              "description": "ngerjain kanban",
+              "CategoryId": 1,
+              "UserId": 1,
+              "updatedAt": "2020-03-11T14:01:33.330Z",
+              "createdAt": "2020-03-11T14:01:33.330Z"
+          },
+          {
+              "id": 2,
+              "description": "fancy-todo",
+              "CategoryId": 1,
+              "UserId": 1,
+              "createdAt": "2020-03-11T14:13:42.386Z",
+              "updatedAt": "2020-03-11T14:13:42.386Z"
+          },
+      ]
+    }
+    ```
 
-  OR
+    OR
 
 * **Error Response:**
   * **Code:** 500
   * **Content:** 
-  ```javascript
-  {
-    "error": "Internal Server Error" 
-  }
-  ```
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
 
 
-## **Create a New Task
+## **Create a New Task**
 Add a new task
 * **URL**
 
@@ -199,11 +200,12 @@ Add a new task
 * **Error Response:**
   * **Code:** 500
   * **Content:** 
-  ```javascript
-  {
-    "error": "Internal Server Error" 
-  }
-  ```
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
+
 
 ## **FindOne task by Id**
 find one task from kanban by id 
@@ -251,14 +253,14 @@ find one task from kanban by id
 * **Error Response:**
   * **Code:** 500
   * **Content:** 
-  ```javascript
-  {
-    "error": "Internal Server Error" 
-  }
-  ```
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
 
 
-## **Delete task by Id*
+## **Delete task by Id**
 Delete task by id 
 
 * **URL**
@@ -286,29 +288,29 @@ Delete task by id
 * **Success Response:**
   * **Code:** 200
   * **Content:** 
-  ```javascript
-    {
-        "data": {
-            "id": 1,
-            "description": "ngerjain kanban",
-            "CategoryId": 1,
-            "UserId": 1,
-            "createdAt": "2020-03-11T14:01:33.330Z",
-            "updatedAt": "2020-03-11T14:01:33.330Z"
-        }
-    }
-    ```
+    ```javascript
+      {
+          "data": {
+              "id": 1,
+              "description": "ngerjain kanban",
+              "CategoryId": 1,
+              "UserId": 1,
+              "createdAt": "2020-03-11T14:01:33.330Z",
+              "updatedAt": "2020-03-11T14:01:33.330Z"
+          }
+      }
+      ```
 
     OR
 
 * **Error Response:**
   * **Code:** 500
   * **Content:** 
-  ```javascript
-  {
-    "error": "Internal Server Error" 
-  }
-  ```
+    ```javascript
+    {
+      "error": "Internal Server Error" 
+    }
+    ```
 
 
 ## **Update Task by Id** 
@@ -357,8 +359,8 @@ Edit a task by id
 * **Error Response:**
   * **Code:** 500
   * **Content:** 
-  ```javascript
-  {
-    "error": "Internal Server Error"
-  }
-  ```
+    ```javascript
+    {
+      "error": "Internal Server Error"
+    }
+    ```
