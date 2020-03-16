@@ -105,7 +105,7 @@ Show All Tasks
 * **Headers**
   **Required:**
 
-  None
+  `token`
 
 * **URL Params**
   **Required:**
@@ -166,7 +166,7 @@ Add a new task
 *   **Headers**
     **Required:**
 
-   `token`
+    `token`
 
 *   **URL Params**
     **Required:**
