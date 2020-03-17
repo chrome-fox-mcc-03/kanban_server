@@ -69,7 +69,7 @@ class UserController {
             where : {id : {[Op.not] : req.UserId}},
             order : [['id', 'ASC']]
         })
-        .then(data=> res.status(200).json(data))
+        .then(data=> res.status(200).json({id : data.id, name : data.name}))
         .catch(err=> next(err))
     }
     static joinedMember(req, res, next){
