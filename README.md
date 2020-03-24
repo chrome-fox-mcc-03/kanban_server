@@ -434,7 +434,7 @@ Delete a Task from our app.
     ```javascript
     {
         "status": 404,
-        "msg": "Error not found"
+        "msg": "Data not found"
     }
     ```
 
@@ -506,7 +506,7 @@ Move a Task one step to the right (plus one in the CategoryId). It cannot move i
     ```javascript
     {
         "status": 404,
-        "msg": "Error not found"
+        "msg": "Data not found"
     }
     ```
 
@@ -544,16 +544,6 @@ Move a Task one step to the left (minus one in the CategoryId). It cannot move i
     **Content:**
     ```javascript
     {
-        "msg": "Task successfully moved into category 1"
-    }
-    ```
-
-  OR
-
-  - **Code:** 400 Bad Request <br />
-    **Content:**
-    ```javascript
-    {
         "status": 400,
         "msg": "Task cannot be moved from when it is already in Done category"
     }
@@ -577,6 +567,6 @@ Move a Task one step to the left (minus one in the CategoryId). It cannot move i
     ```javascript
     {
         "status": 404,
-        "msg": "Error not found"
+        "msg": "Data not found"
     }
     ```

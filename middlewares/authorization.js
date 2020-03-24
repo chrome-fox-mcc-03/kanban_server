@@ -25,7 +25,7 @@ module.exports = {
           // task not found
           next({
             status: 404,
-            msg: "Error not found"
+            msg: "Data not found"
           });
         }
       })
