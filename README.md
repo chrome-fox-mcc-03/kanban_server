@@ -2,6 +2,12 @@
 
 A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow). Kanban boards use cards, columns, and continuous improvement to help technology and service teams commit to the right amount of work, and get it done! This is my take on a kanban board made for Hacktiv8 Phase-2 portofolio.
 
+### **Deployment**
+
+**Heroku (server)** : https://kanban-quest.herokuapp.com/
+
+**Firebase (client)** : https://kanban-1583916872683.firebaseapp.com/
+
 ## **Register a new User**
 
 Registering a new user for our app.
