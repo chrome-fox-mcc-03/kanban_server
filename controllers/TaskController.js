@@ -3,7 +3,10 @@ const { Task, Category, User } = require("../models");
 class TaskController {
   static findAll(req, res, next) {
     Task.findAll({
-      include: [Category, User]
+      include: [Category, User],
+      where: {
+        UserId: req.decoded.id
+      }
     })
       .then(allData => {
         res.status(200).json({
