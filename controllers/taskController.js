@@ -2,10 +2,10 @@ const { Task, User } = require('../models')
 
 class TaskController {
     static fetchTask(req, res, next){
-        
+        console.log('masuk controller')
         Task.findAll({
             where: {
-                UserId: req.headers.userId 
+                UserId: req.headers.userId
             }
         })
         .then((taskFound) => {
@@ -47,6 +47,7 @@ class TaskController {
     static editTask(req, res, next) {
         // const { title, category }
         const id = req.params.id
+        console.log(req.params.id, 'dari controller')
         const titleEdit = req.body.title
 
         Task.update({
@@ -91,8 +92,8 @@ class TaskController {
     }
 
     static createTask(req, res, next) {
+        console.log(req.body);
         const { title, category } = req.body
-        console.log(title, category);
         
         const UserId = req.headers.userId
         Task.create({

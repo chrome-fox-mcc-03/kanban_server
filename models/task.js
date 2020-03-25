@@ -5,7 +5,17 @@ module.exports = (sequelize, DataTypes) => {
   Task.init({
     title: {
       type : DataTypes.STRING,
-      allowNull : false
+      allowNull : false,
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'title cannot be null',
+        },
+        notEmpty: {
+          args: true,
+          msg: 'title cannot be empty'
+        }
+      }
     },
     category: {
       type : DataTypes.STRING,

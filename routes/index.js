@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { UserController } = require('../controllers/userController')
 const { TaskController } = require('../controllers/taskController')
 const authentication = require('../middlewares/authentication')
+const authorization = require('../middlewares/authorization')
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -19,11 +20,12 @@ router.post('/loginGoogle', UserController.loginGoogle)
 
 
 //Task
-router.use(authentication)
-router.get('/task', TaskController.fetchTask)
-router.post('/task', TaskController.createTask)
-router.delete('/task/:id', TaskController.deleteTask)
-router.put('/task/:id', TaskController.editTask)
+// router.use(authentication)
+router.get('/task', authentication ,TaskController.fetchTask)
+router.post('/task', authentication ,TaskController.createTask)
+// router.use(authorization)
+router.delete('/task/:id', authentication, authorization, TaskController.deleteTask)
+router.put('/task/:id', authentication, authorization, TaskController.editTask)
 
 
 

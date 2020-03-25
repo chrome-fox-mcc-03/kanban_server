@@ -8,6 +8,7 @@ const client = new OAuth2Client(client_id)
 class UserController {
     static register(req, res, next){
         const { name, email, password } = req.body
+        console.log(name, email, password)
         User.create({
             name: name,
             email: email,
@@ -31,6 +32,7 @@ class UserController {
     static login(req, res, next){
 
         const {email} = req.body
+        console.log(email)
 
         User.findOne({
             where: {
