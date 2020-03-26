@@ -37,16 +37,34 @@ class TodoController {
     }
 
     static updateTodo(req,res,next) {
-        let {description} = req.body
+        let {description,name_box} = req.body
         let {id} = req.params
-        Todo.update({
-            description
-        },{where:{id}})
-        .then((result) => {
-            res.status(200).json(result)
-        }).catch((err) => {
-            next(err)
-        });
+        if(!name_box) {
+            Todo.update({
+                description
+            },{where:{id}})
+            .then((result) => {
+                res.status(200).json(result)
+            }).catch((err) => {
+                next(err)
+            });
+        } else {
+            Todo.findOne({
+                where:{id}
+            })
+            .then((result) => {
+                description = result.dataValues.description
+                return Todo.update({
+                    name_box,
+                    description
+                },{where:{id}})
+            })
+            .then((result) => {
+                res.status(200).json(result)
+            }).catch((err) => {
+                next(err)
+            });
+        }
     }
 
     static deleteTodo(req,res,next) {

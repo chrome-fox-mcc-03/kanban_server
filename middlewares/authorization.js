@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const {Todo} = require('../models')
+const {Todo,User} = require('../models')
 const {decodedToken} = require('../helpers/helper')
 module.exports = {
     authorization: (req,res,next) => {
@@ -9,7 +9,8 @@ module.exports = {
         Todo.findOne({
             where:{
                 id
-            }
+            },
+            include: [User]
         })
         .then((result) => {
             if(result.dataValues.UserId == decoded.id) {
