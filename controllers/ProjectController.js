@@ -23,8 +23,8 @@ module.exports =
     static create (req, res, next) {
       const { currentUserId } = req
       const { name } = req.body
-      sequelize.transaction(t => {
-        Project.create({ name }, {
+      return sequelize.transaction(t => {
+        return Project.create({ name }, {
           transaction: t
         })
           .then(project => {
@@ -35,9 +35,9 @@ module.exports =
               transaction: t
             })
           })
+          .then(() => res.status(201).json({ message: 'Create project successful' }))
+          .catch(next)
       })
-        .then(() => res.status(201).json({ message: 'Create project successful' }))
-        .catch(next)
     }
 
     static findByPk (req, res, next) {

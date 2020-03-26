@@ -3,9 +3,9 @@ const { Task } = require('../models')
 module.exports = 
   class TaskController {
     static findAll (req, res, next) {
-      const { GroupId } = req.headers
+      const { ProjectId } = req.headers
       Task.findAll({
-        where: { GroupId }
+        where: { ProjectId }
       })
       .then(tasks => res.status(200).json({ tasks }))
       .catch(next)
@@ -25,15 +25,15 @@ module.exports =
     }
 
     static create (req, res, next) {
-      const { name, description, GroupId } = req.body
-      Task.create({ name, description, GroupId })
+      const { name, description, ProjectId } = req.body
+      Task.create({ name, description, ProjectId })
         .then(() => res.status(201).json({ message: 'Create task successful' }))
         .catch(next)
     }
 
     static edit (req, res, next) {
-      const { name, description, GroupId } = req.body
-      Task.update({ name, description, GroupId })
+      const { name, description, ProjectId } = req.body
+      Task.update({ name, description, ProjectId })
         .then(() => res.status(200).json({ message: 'Update task successful' }))
         .catch(next)
     }
