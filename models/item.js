@@ -60,7 +60,9 @@ module.exports = (sequelize, DataTypes) => {
     modelName: "Item",
   })
   Item.addHook('beforeValidate', (item, options) => {
-    item.status = 'Backlog';
+    if (!item.status) {
+      item.status = 'Backlog';
+    }
   });
   Item.associate = function(models) {
     // associations can be defined here

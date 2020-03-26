@@ -37,31 +37,31 @@ class ItemController {
         .catch(next);
     }
     static updateItem(req, res, next) {
-        let id = req.params.id;
-        let body = {};
-
-        Item.update({}, {
+        let body = req.body;
+        Item.update(body, {
             where: {
-                id
+                id: req.itemId
             }
         })
-        .then(result => {
-
-        })
-        .catch(next);
+            .then(_ => {
+                res.status(200).json({
+                    message: 'item updated'
+                })
+            })
+            .catch(next);
     }
     static deleteMyItem (req, res, next) {
-        let id = req.params.id;
-
-        Item.delete({
+        Item.destroy({
             where: {
-                id
+                id: req.itemId
             }
         })
-        .then(result => {
-            res.status(200).json(result);
-        })
-        .catch(next);
+            .then(_ => {
+                res.status(200).json({
+                    message: 'item removed'
+                })
+            })
+            .catch(next)
     }
 };
 

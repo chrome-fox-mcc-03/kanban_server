@@ -9,7 +9,7 @@ module.exports = function (err, req, res, next) {
             message: msg
         })
     } else if (err instanceof Error) {
-        res.status(err.code).json({
+        res.status(err.code || 500).json({
             message: err.message
         })
     }

@@ -1,19 +1,30 @@
-const { User } = require('../models/index');
-const { getPayload } = require('../helper/jwt');
+const { Item } = require('../models/index');
 const appError = require('../helper/appError');
 
 module.exports = function (req, res, next) {
-    const token = req.headers.token;
-    const payload = getPayload(token);
-
-    if (!token) {
-        next(appError(400, "Please login as valid user"));
+    if (Number(req.params.id)) {
+        req.itemId = req.params.id;
+        Item.findOne({
+            where: {
+                id: req.itemId
+            }
+        })
+            .then(result => {
+                if (result) {
+                    if (result.UserId === req.appUser.id) {
+                        next()
+                    } else {
+                        next(appError(401, 'user not authorized'))
+                    }
+                } else {
+                    next(appError(404, 'item not found'))
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                next(err)
+            })
+    } else {
+        next(appError(400, 'invalid item id'))
     }
-
-    User.findOne()
-    .then(result => {
-
-    })
-    .catch(next);
-    next()
 }
