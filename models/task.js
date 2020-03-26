@@ -4,9 +4,30 @@ module.exports = (sequelize, DataTypes) => {
   class Task extends Model{}
 
   Task.init({
-    title: DataTypes.STRING,
-    ProjectId: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'Title Cannot Null' },
+        notEmpty: { args: true, msg: 'Title Cannot Empty' },
+      }
+    },
+    ProjectId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'ProjectId Cannot Null' },
+        notEmpty: { args: true, msg: 'ProjectId Cannot Empty' },
+      }
+    },
+    CategoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'CategoryId Cannot Null' },
+        notEmpty: { args: true, msg: 'CategoryId Cannot Empty' },
+      }
+    }
   },{
     sequelize
   })

@@ -4,7 +4,14 @@ module.exports = (sequelize, DataTypes) => {
   class Project extends Model{}
 
   Project.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { args: true, msg: 'Name Cannot Null' },
+        notEmpty: { args: true, msg: 'Name Cannot Empty' }
+      }
+    }
   },{
     sequelize
   })
