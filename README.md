@@ -12,7 +12,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -62,7 +62,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -109,7 +109,7 @@
   
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
 
 *  **URL Params**
 
@@ -132,9 +132,6 @@
     ```
  
 * **Error Response:**
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{ message : "Bad request" }`
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ message : "You must Login first" }`
@@ -161,7 +158,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -209,7 +206,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -255,7 +252,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -305,7 +302,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -353,7 +350,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -401,7 +398,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -448,7 +445,7 @@
 
 * **Headers**
 
-  Authorization: `<token>`
+  Authentication: `<token>`
   
 *  **URL Params**
 
@@ -598,7 +595,7 @@
     **Content:** 
     ```json
     {
-      "access_token": "eyJhbzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWFgwODI2MTk1fQ.h56et9F8IbLIG6e5wvGtRC6oRDvpxHf8WO4rWs" 
+      "token": "eyJhbzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWFgwODI2MTk1fQ.h56et9F8IbLIG6e5wvGtRC6oRDvpxHf8WO4rWs" 
     }
     ```
  
