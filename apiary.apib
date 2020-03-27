@@ -1,0 +1,664 @@
+FORMAT: 1A
+HOST: https://ancient-stream-97435.herokuapp.com
+
+# Kanbanology
+
+Kanbanology is a simple Kanban App to maintain the workflow and organize your team's work
+
+## Login Collection [/login]
+
+### Login [POST]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "email": "naufalyunan45@gmail.com",
+                "password": "12345"
+            }
+        
++ Response 200
+    
+    + Body
+    
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RfbmFtZSI6Im1lZ2EiLCJsYXN0X25hbWUiOiJ3YXRpIiwiZW1haWwiOiJtZWdhd2F0aUBnbWFpbC5jb20iLCJyb2xlIjoic3RhZmYiLCJpYXQiOjE1ODQxMDUzODV9.5_NdlSALORDDZLkmEh0eSpwg3tRkAYDizktGpdbbrqQ"
+            }
+    
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Email or Password Invalid!"
+            }
+
+## Login Collection [/loginGoogle]
+
+### Login Google [POST]
+
++ Request (application/json)
+    
+    + Body
+    
+            {
+                "id_token": "adfasgerqtc34@#.dfq4tfjkasdfkahsbuiawer634517605co3ru8e4ty043y08573byc7345"
+            }
+        
++ Response 200
+    
+    + Body
+    
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RfbmFtZSI6Im1lZ2EiLCJsYXN0X25hbWUiOiJ3YXRpIiwiZW1haWwiOiJtZWdhd2F0aUBnbWFpbC5jb20iLCJyb2xlIjoic3RhZmYiLCJpYXQiOjE1ODQxMDUzODV9.5_NdlSALORDDZLkmEh0eSpwg3tRkAYDizktGpdbbrqQ"
+            }
+    
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+## Search By Mail [/{email}/user]
++ Parameters
+    + email (string) - email of the user in the form of a string
+    
+### Search User By Mail [POST]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+            
+    + Body
+    
+            {
+                "email": "naufalyunan45@gmail.com"
+            }
+        
++ Response 200
+    
+    + Body
+    
+            {
+                "id": 1,
+                "first_name": "naufal",
+                "last_name": "yunan",
+                "email": "naufalyunan45@gmail.com",
+                "password": "$2a$10$/kU3vcHaj7XWGJWhYvZ3QeBDowQjQYwyA58y.8TqCTEXQMEtIhF1e",
+                "role": "admin",
+                "createdAt": "2020-03-12T01:51:35.076Z",
+                "updatedAt": "2020-03-12T01:51:35.076Z"
+            }
+    
++ Response 400
+
+    + Body
+    
+            {
+                "error": "User not found"
+            }
+
+## Tasks Collection [/tasks]
+    
+### Get All Task [GET]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
++ Response 200
+    
+    + Body
+    
+            [
+                {
+                    "id": 3,
+                    "title": "Deploy apapun",
+                    "category": "Development",
+                    "UserId": 1,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod nihil at doloribus aliquid architecto aspernatur, possimus ducimus enim, corrupti animi ullam assumenda esse voluptatum consectetur dignissimos iure, accusantium vel.",
+                    "createdAt": "2020-03-12T01:57:20.340Z",
+                    "updatedAt": "2020-03-12T01:57:20.340Z",
+                    "User": {
+                        "id": 1,
+                        "first_name": "naufal",
+                        "last_name": "yunan",
+                        "email": "naufalyunan45@gmail.com",
+                        "password": "$2a$10$/kU3vcHaj7XWGJWhYvZ3QeBDowQjQYwyA58y.8TqCTEXQMEtIhF1e",
+                        "role": "admin",
+                        "createdAt": "2020-03-12T01:51:35.076Z",
+                        "updatedAt": "2020-03-12T01:51:35.076Z"
+                    }
+                },
+                {
+                    "id": 4,
+                    "title": "LALALALLA",
+                    "category": "Production",
+                    "UserId": 1,
+                    "description": "<label class=\"category-label add_task\" for=\"category\">Category:</label><br>                     <input v-model=\"taskData.category\" class=\"category-input add_task\" type=\"category\" id=\"category-add_task\" name=\"password\" ><br><br>                     ",
+                    "createdAt": "2020-03-12T02:01:58.755Z",
+                    "updatedAt": "2020-03-12T02:01:58.755Z",
+                    "User": {
+                        "id": 1,
+                        "first_name": "naufal",
+                        "last_name": "yunan",
+                        "email": "naufalyunan45@gmail.com",
+                        "password": "$2a$10$/kU3vcHaj7XWGJWhYvZ3QeBDowQjQYwyA58y.8TqCTEXQMEtIhF1e",
+                        "role": "admin",
+                        "createdAt": "2020-03-12T01:51:35.076Z",
+                        "updatedAt": "2020-03-12T01:51:35.076Z"
+                    }
+                }
+            ]
+    
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Add Task [POST]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
+    + Body
+    
+            {
+                "title": "Deploy server",
+                "category" : "Development",
+                "description": "Lorem ipsum dolor sit amet",
+                "UserId": "1"
+            }
+            
++ Response 201
+    
+    + Body
+    
+            {
+                "title": "Deploy server",
+                "category" : "Development",
+                "description": "Lorem ipsum dolor sit amet",
+                "UserId": "1"
+            }
+    
++ Response 400
+
+    + Body
+    
+            {
+                "error": "You are not authenticated!"
+            }
+
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Field Must Be Filled"
+            }
+            
+## Task Collection [/tasks/{id}]
++ Parameters
+    + id (number) - ID of the data in the form of an integer
+
+    
+### Get Task By Id [GET]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
++ Response 200
+    
+    + Body
+    
+            {
+                "id": 48,
+                "title": "Deploy apapun",
+                "category": "haru diisi",
+                "UserId": 2,
+                "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod nihil at doloribus aliquid architecto aspernatur, possimus ducimus enim, corrupti animi ullam assumenda esse voluptatum consectetur dignissimos iure, accusantium vel.",
+                "createdAt": "2020-03-13T13:49:09.227Z",
+                "updatedAt": "2020-03-13T13:49:09.227Z",
+                "User": {
+                    "id": 2,
+                    "first_name": "mega",
+                    "last_name": "wati",
+                    "email": "megawati@gmail.com",
+                    "password": "$2a$10$Bb59sF.fq1UGfFMtvKR6s.PjzE4VSVwD3WWJn05kn2KcHKbvxGZw.",
+                    "role": "staff",
+                    "createdAt": "2020-03-12T07:01:54.241Z",
+                    "updatedAt": "2020-03-12T07:01:54.241Z"
+                }
+            }
+    
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Task not found"
+            }
+            
++ Response 401
+
+    + Body
+    
+            {
+                "error": "You are not authorized"
+            }
+
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Update Task [PUT]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
+    + Body
+    
+            {
+                "title": "Deploy apapun",
+                "category" : "Development",
+                "description": "Lorem ipsum dolor sit amet",
+                "UserId": "2"
+            }
+            
++ Response 201
+    
+    + Body
+    
+            {
+                "id": 39,
+                "title": "Deploy apapun",
+                "category": "Development",
+                "createdAt": "2020-03-13T09:01:29.328Z",
+                "updatedAt": "2020-03-13T13:53:18.167Z",
+                "UserId": 2,
+                "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod nihil at doloribus aliquid architecto aspernatur, possimus ducimus enim, corrupti animi ullam assumenda esse voluptatum consectetur dignissimos iure, accusantium vel."
+            }
+    
++ Response 401
+
+    + Body
+    
+            {
+                "error": "You are not authorized"
+            }
+
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Field Must Be Filled"
+            }
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Task not found"
+            }
+
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Delete Task [DELETE]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+            
++ Response 203
+    
+    + Body
+    
+            {
+                "id": 39,
+                "title": "Deploy apapun",
+                "category": "Development",
+                "UserId": 2,
+                "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod nihil at doloribus aliquid architecto aspernatur, possimus ducimus enim, corrupti animi ullam assumenda esse voluptatum consectetur dignissimos iure, accusantium vel.",
+                "createdAt": "2020-03-13T09:01:29.328Z",
+                "updatedAt": "2020-03-13T13:53:18.167Z"
+            }
+    
++ Response 401
+
+    + Body
+    
+            {
+                "error": "You are not authorized"
+            }
+
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Task not found"
+            }
+
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+## Users Collection [/users]
+    
+### Get All User [GET]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
++ Response 200
+    
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "first_name": "naufal",
+                    "last_name": "yunan",
+                    "email": "naufalyunan45@gmail.com",
+                    "password": "$2a$10$/kU3vcHaj7XWGJWhYvZ3QeBDowQjQYwyA58y.8TqCTEXQMEtIhF1e",
+                    "role": "admin",
+                    "createdAt": "2020-03-12T01:51:35.076Z",
+                    "updatedAt": "2020-03-12T01:51:35.076Z"
+                },
+                {
+                    "id": 2,
+                    "first_name": "mega",
+                    "last_name": "wati",
+                    "email": "megawati@gmail.com",
+                    "password": "$2a$10$Bb59sF.fq1UGfFMtvKR6s.PjzE4VSVwD3WWJn05kn2KcHKbvxGZw.",
+                    "role": "staff",
+                    "createdAt": "2020-03-12T07:01:54.241Z",
+                    "updatedAt": "2020-03-12T07:01:54.241Z"
+                },
+                {
+                    "id": 13,
+                    "first_name": "budi",
+                    "last_name": "utomo",
+                    "email": "budiutomo@gmail.com",
+                    "password": "$2a$10$WzykB/BYPc9aCmBUhe1RV.h562RgGzryRh0gsxG7Vhy8vTfnH1NZi",
+                    "role": "staff",
+                    "createdAt": "2020-03-13T08:27:57.998Z",
+                    "updatedAt": "2020-03-13T08:27:57.998Z"
+                },
+                {
+                    "id": 14,
+                    "first_name": "jaka",
+                    "last_name": "anggara",
+                    "email": "janggar@gmail.com",
+                    "password": "$2a$10$PAARM3PxtictQOxagXUVc.SN4.GvT3TaZCpH9L04hGGh.xaz/amLC",
+                    "role": "admin",
+                    "createdAt": "2020-03-13T10:14:07.946Z",
+                    "updatedAt": "2020-03-13T10:14:07.946Z"
+                }
+            ]
+    
++ Response 400
+
+            {
+                "error": "You are not authenticated to do such thing"
+            }
+            
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Add User [POST]
+
++ Request (application/json)
+        
+    + Body
+    
+            {
+                "first_name": "naufal",
+                "last_name": "yunan",
+                "email": "naufalyunan45@gmail.com",
+                "password": "12345",
+                "role": "admin"
+            }
+            
++ Response 201
+    
+    + Body
+    
+            {
+                "id": 15,
+                "first_name": "adsfasd",
+                "last_name": "yunan",
+                "email": "asdfdsf@gmail.com",
+                "password": "$2a$10$BCw3xfhgQ3FE3OvscxrHdewVW41LFCYNQfxjfLQSWccj3IT/9EjGG",
+                "role": "admin",
+                "updatedAt": "2020-03-13T14:05:54.137Z",
+                "createdAt": "2020-03-13T14:05:54.137Z"
+            }
+
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Field Must Be Filled"
+            }
+
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Email already in use"
+            }
+
+            
+## User Collection [/users/{id}]
++ Parameters
+    + id (number) - ID of the data in the form of an integer
+
+    
+### Get User By Id [GET]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
++ Response 200
+    
+    + Body
+    
+            {
+                "id": 2,
+                "first_name": "mega",
+                "last_name": "wati",
+                "email": "megawati@gmail.com",
+                "password": "$2a$10$Bb59sF.fq1UGfFMtvKR6s.PjzE4VSVwD3WWJn05kn2KcHKbvxGZw.",
+                "role": "staff",
+                "createdAt": "2020-03-12T07:01:54.241Z",
+                "updatedAt": "2020-03-12T07:01:54.241Z"
+            }
+    
++ Response 400
+
+    + Body
+    
+            {
+                "error": "User not found"
+            }
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "You are not authenticated!"
+            }
+            
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Update User [PUT]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+        
+    + Body
+    
+            {
+                "first_name": "naufal",
+                "last_name": "yunan",
+                "email": "naufalyunan45@gmail.com",
+                "role": "admin",
+            }
+            
++ Response 201
+    
+    + Body
+    
+            {
+                "id": 1,
+                "first_name": "naufal",
+                "last_name": "yunan",
+                "email": "naufalyunan45@gmail.com",
+                "password": "$2a$10$HL3TeOnoKK/6N2ExhiJH4OJP7gMDjpgVj1HLxo9FAENJVrCE.Injm",
+                "role": "admin",
+                "createdAt": "2020-03-12T01:51:35.076Z",
+                "updatedAt": "2020-03-13T14:09:50.442Z"
+            }
+    
++ Response 401
+
+    + Body
+    
+            {
+                "error": "You are not authenticated!"
+            }
+
+            
++ Response 400
+
+    + Body
+    
+            {
+                "error": "Field Must Be Filled"
+            }
++ Response 400
+
+    + Body
+    
+            {
+                "error": "User not found"
+            }
+
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
+
+### Delete User [DELETE]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Token: token
+            
++ Response 203
+    
+    + Body
+    
+            {
+                "id": 14,
+                "first_name": "jaka",
+                "last_name": "anggara",
+                "email": "janggar@gmail.com",
+                "password": "$2a$10$PAARM3PxtictQOxagXUVc.SN4.GvT3TaZCpH9L04hGGh.xaz/amLC",
+                "role": "admin",
+                "createdAt": "2020-03-13T10:14:07.946Z",
+                "updatedAt": "2020-03-13T10:14:07.946Z"
+            }
+    
++ Response 401
+
+    + Body
+    
+            {
+                "error": "You are not authenticated!"
+            }
+
++ Response 400
+
+    + Body
+    
+            {
+                "error": "User not found"
+            }
+
++ Response 500
+
+    + Body
+    
+            {
+                "error": "Database Error"
+            }
