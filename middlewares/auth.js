@@ -20,14 +20,14 @@ module.exports = {
   },
 
   groupAuth(req, res, next) {
-    const { ProjectId } = req.headers
+    const { projectid } = req.headers
     const { currentUserId } = req
     User.findOne({
       where: { id: currentUserId },
       include: [
         {
           model: Project,
-          where: { id: ProjectId }
+          where: { id: +projectid }
         }
       ]
     })
@@ -37,7 +37,7 @@ module.exports = {
         message: 'User does not belongs to the Project'
       }
       else {
-        req.currentProject = ProjectId
+        req.currentProject = projectid
         next()
       }
     })
@@ -49,12 +49,13 @@ module.exports = {
     const { id } = req.params
     Task.findByPk(id)
       .then(task => {
+        console.log(task.ProjectId, currentProject, 'tesssssssssst')
         if (!task) throw {
           status: 401,
           message: `Task does not belongs user's project`
         }
         else {
-          if (task.ProjectId !== currentProject) throw {
+          if (task.ProjectId != +currentProject) throw {
             status: 401,
             message: `Task does not belongs user's project`
           }

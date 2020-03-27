@@ -1,23 +1,28 @@
-const { Member, User } = require('../models')
+const { Member, User, Project } = require('../models')
 const { Op } = require('sequelize')
 
 module.exports = 
   class MemberController {
     static invite (req, res, next) {
-      const { UserId, PorjectId } = req.body
-      Member.create({ UserId, PorjectId })
+      const { UserId, ProjectId } = req.body
+      Member.create({ UserId, ProjectId })
         .then(() => res.status(201).json({ message: 'Invite user successful' }))
         .catch(next)
     }
 
     static findUser (req, res, next) {
-      const GroupId = req.params.groupId
+      const ProjectId = req.params.projectId
       User.findAll({
-        where: {
-          GroupId: {
-            [Op.not]: GroupId
+        include: [
+          {
+            model: Project,
+            // where: {
+            //   ProjectId: {
+            //     [Op.not]: ProjectId
+            //   }
+            // }
           }
-        },
+        ],
         attributes: {
           exclude: ['password']
         }
@@ -27,12 +32,12 @@ module.exports =
     }
 
     static exit (req, res, next) {
-      const GroupId = req.params.groupId
+      const ProjectId = req.params.projectId
       const { currentUserId } = req
       Member.delete({
         where: {
           UserId: currentUserId,
-          GroupId
+          ProjectId
         }
       })
         .then(() => res.status(200).json({ message: 'Exit group success!' }))

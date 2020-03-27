@@ -3,8 +3,8 @@ const MemmberController = require('../controllers/MemberController')
 
 router.post('/', MemmberController.invite)
 
-router.get('/:groupId', MemmberController.findUser)
+router.get('/:projectId', MemmberController.findUser)
 
-router.delete('/:groupId', MemmberController.exit)
+router.delete('/:projectId', MemmberController.exit)
 
 module.exports = router
