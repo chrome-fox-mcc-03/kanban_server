@@ -9,7 +9,7 @@ module.exports = function (req, res, next) {
         .then(result => {
             if (!result) {
                 next({
-                    status: 400,
+                    status: 404,
                     msg: {
                         err: 'Task Not Found'
                     }

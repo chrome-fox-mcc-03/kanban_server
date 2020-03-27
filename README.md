@@ -36,9 +36,22 @@
 
     OR
 
-  * **Code:** 400 <br/>
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
 
-    **Content:** `Unauthorized/ Forbidden`
+    OR
+
+  * **Code:** 403 <br/>
+
+    **Content:** `Forbidden`
+
+    OR
+    
+  * **Code:** 404 <br/>
+    
+    **Content:** `Task Not Found`
+    
 
 
 
@@ -88,9 +101,20 @@
 
     OR
 
+  * **Code:** 400 <br/>
+
+    **Content:** `Bad Request`
+
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
+
+    OR
+
   * **Code:** 403 <br/>
 
-    **Content:** `Please Fill Title / Forbidden/ Unauthorized`
+    **Content:** `Forbidden`
+
 
 
 **UPDATE TASK**
@@ -131,9 +155,27 @@
   * **Code:** 500 <br />
     **Content:** `Internal Server Error`
 
+  * **Code:** 400 <br/>
+
+    **Content:** `Bad Request`
+  
+    OR
+
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
+
+    OR
+
   * **Code:** 403 <br/>
 
-    **Content:** `Please Fill Title  / Forbidden/ Unauthorized/Task not found`
+    **Content:** `Forbidden`
+
+    OR
+    
+  * **Code:** 404 <br/>
+    
+    **Content:** `Task Not Found`
 
 
 
@@ -173,9 +215,29 @@
   * **Code:** 500 NOT FOUND <br />
     **Content:** `Internal Server Error`
 
+    OR
+
+  * **Code:** 400 <br/>
+
+    **Content:** `Bad Request`
+  
+    OR
+
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
+
+    OR
+
   * **Code:** 403 <br/>
 
-    **Content:** `Forbidden/ Unauthorized/ Task not found`
+    **Content:** `Forbidden`
+
+    OR
+    
+  * **Code:** 404 <br/>
+    
+    **Content:** `Task Not Found`
 
 
 
@@ -221,10 +283,27 @@ User
 
 * **Error Response:**
 
-  * **Code:** 500 <br />
+ * **Code:** 500 <br />
     **Content:** `Internal Server Error`
-  * **Code:** 400 <br />
-    **Content:** `email already exists`
+
+    OR
+
+  * **Code:** 400 <br/>
+
+    **Content:** `Bad Request`
+  
+    OR
+
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
+
+    OR
+
+  * **Code:** 403 <br/>
+
+    **Content:** `Forbidden`
+
 
 
 
@@ -263,5 +342,27 @@ User
 
   * **Code:** 500 <br />
     **Content:** `Internal Server Error`
-  * **Code:** 400 <br />
-    **Content:**  `email / password is Wrong`
+
+    OR
+
+  * **Code:** 400 <br/>
+
+    **Content:** `Bad Request`
+  
+    OR
+
+  * **Code:** 401 <br/>
+    
+    **Content:** `Unauthorized`
+
+    OR
+
+  * **Code:** 403 <br/>
+
+    **Content:** `Forbidden`
+
+    OR
+    
+  * **Code:** 404 <br/>
+    
+    **Content:** `Task Not Found`
