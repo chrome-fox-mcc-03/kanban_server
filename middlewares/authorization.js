@@ -9,22 +9,33 @@ module.exports = function (req, res, next) {
         .then(result => {
             if (!result) {
                 next({
-                    status: 404,
+                    name: 'authorization',
+                    status: 403,
                     msg: {
-                        err: 'Task Not Found'
-                    }
+                            message: 'Unauthorized, only Super Admin can do this action!'
+                        }
                 })
             } else {
                 if (result.UserId === req.decoded.id) {
                     next()
                 } else {
                     next({
-                        status: 401,
+                        name: 'authorization',
+                        status: 403,
                         msg: {
-                            err: 'Unauthorized'
-                        }
+                                message: 'Unauthorized'
+                            }
                     })
                 }
             }
+        })
+        .catch(error => {
+            next({
+                name: 'authorization',
+                status: 403,
+                msg: {
+                        message: 'Unauthorized'
+                    }
+            })
         })
 }

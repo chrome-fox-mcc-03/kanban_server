@@ -36,7 +36,7 @@
 
     OR
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 
@@ -46,12 +46,6 @@
 
     **Content:** `Forbidden`
 
-    OR
-    
-  * **Code:** 404 <br/>
-    
-    **Content:** `Task Not Found`
-    
 
 
 
@@ -105,7 +99,7 @@
 
     **Content:** `Bad Request`
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 
@@ -161,7 +155,7 @@
   
     OR
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 
@@ -170,12 +164,6 @@
   * **Code:** 403 <br/>
 
     **Content:** `Forbidden`
-
-    OR
-    
-  * **Code:** 404 <br/>
-    
-    **Content:** `Task Not Found`
 
 
 
@@ -223,7 +211,7 @@
   
     OR
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 
@@ -232,14 +220,6 @@
   * **Code:** 403 <br/>
 
     **Content:** `Forbidden`
-
-    OR
-    
-  * **Code:** 404 <br/>
-    
-    **Content:** `Task Not Found`
-
-
 
 
 
@@ -278,7 +258,7 @@ User
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** `{ id:1 email : "hilmi@mail.com" }`
 
 * **Error Response:**
@@ -294,7 +274,7 @@ User
   
     OR
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 
@@ -351,7 +331,7 @@ User
   
     OR
 
-  * **Code:** 401 <br/>
+  * **Code:** 403 <br/>
     
     **Content:** `Unauthorized`
 

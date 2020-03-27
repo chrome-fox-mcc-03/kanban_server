@@ -10,6 +10,9 @@ class Controller {
             .then(result => {
                 res.status(200).json(result)
             })
+            .catch(err => {
+                next(err)
+            })
     }
 
     static addTask(req, res, next) {
@@ -21,6 +24,9 @@ class Controller {
         })
             .then(result => {
                 res.status(200).json(result)
+            })
+            .catch(err => {
+                next(err)
             })
     }
 
@@ -41,7 +47,9 @@ class Controller {
             .then(result => {
                 res.status(200).json(result[1])
             })
-
+            .catch(err => {
+                next(err)
+            })
     }
 
     static delete(req, res, next) {
@@ -58,6 +66,9 @@ class Controller {
             })
             .then(result => {
                 res.status(201).json(data)
+            })
+            .catch(err => {
+                next(err)
             })
     }
 }

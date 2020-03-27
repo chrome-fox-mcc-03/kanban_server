@@ -15,18 +15,20 @@ module.exports = function (req, res, next) {
             })
             .catch(err => {
                 next({
+                    name: 'authentication',
                     status: 403,
                     msg: {
-                        err: 'Forbidden'
-                    }
+                            message: 'Forbidden'
+                        }
                 })
             })
     } catch (err) {
         next({
+            name: 'authentication',
             status: 403,
             msg: {
-                err: 'Forbidden'
-            }
+                    message: 'Forbidden'
+                }
         })
     }
 }

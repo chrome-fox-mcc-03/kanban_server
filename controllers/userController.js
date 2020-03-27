@@ -31,7 +31,7 @@ class Controller {
                 email: result.email,
             }
             let token = genToken(payload)
-            res.status(200).json(token)
+            res.status(201).json(token)
         }).catch(err => {
             next(err)
         })
