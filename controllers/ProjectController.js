@@ -11,6 +11,9 @@ module.exports =
             model: User,
             where: {
               id: currentUserId
+            },
+            attributes: {
+              exclude: ['password']
             }
           },
           Task
