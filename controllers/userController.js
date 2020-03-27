@@ -8,7 +8,6 @@ const client = new OAuth2Client(client_id)
 class UserController {
     static register(req, res, next){
         const { name, email, password } = req.body
-        console.log(name, email, password)
         User.create({
             name: name,
             email: email,
@@ -32,7 +31,6 @@ class UserController {
     static login(req, res, next){
 
         const {email} = req.body
-        console.log(email)
 
         User.findOne({
             where: {
@@ -40,7 +38,6 @@ class UserController {
             }
         })
         .then((userFound) => {
-            console.log(userFound);
             if(userFound){
                 const password = req.body.password
     
@@ -49,7 +46,6 @@ class UserController {
                     email: userFound.email
                 }
                 const isPassValid = checkPassword(password, userFound.password)
-                console.log(isPassValid);
                 
                 if(isPassValid){
                     const access_token = signToken(payload)

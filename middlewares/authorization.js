@@ -13,7 +13,6 @@ function authorization(req,res,next) {
                 }
                 throw error
             } else {
-                // console.log(result)
                 if (result.UserId === req.headers.userId) {
                     next()
                 } else {

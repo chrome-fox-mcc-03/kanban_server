@@ -2,7 +2,6 @@ const { Task, User } = require('../models')
 
 class TaskController {
     static fetchTask(req, res, next){
-        console.log('masuk controller')
         Task.findAll({
             where: {
                 UserId: req.headers.userId
@@ -14,7 +13,7 @@ class TaskController {
             let product = []
             let development = []
             let done = []
-            // console.log(taskFound);
+
             for (let index = 0; index < taskFound.length; index++) {
                 if(taskFound[index].category === 'backlog'){
                     backlog.push(taskFound[index])
@@ -47,7 +46,6 @@ class TaskController {
     static editTask(req, res, next) {
         // const { title, category }
         const id = req.params.id
-        console.log(req.params.id, 'dari controller')
         const titleEdit = req.body.title
 
         Task.update({
@@ -71,8 +69,6 @@ class TaskController {
     }
 
     static deleteTask(req, res, next) {
-        console.log(req.params.id);
-        
         const id = req.params.id
 
         Task.destroy({
@@ -92,7 +88,6 @@ class TaskController {
     }
 
     static createTask(req, res, next) {
-        console.log(req.body);
         const { title, category } = req.body
         
         const UserId = req.headers.userId

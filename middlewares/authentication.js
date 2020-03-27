@@ -17,8 +17,6 @@ function authentication (req, res, next){
         .then((userFound) => {
             if(userFound){
                 req.headers.userId = userFound.dataValues.id
-                console.log('masuk authentication succeed')
-                console.log(req.params)
                 next()
                 return null
             }else{
