@@ -1,0 +1,4 @@
+PORT=3000
+SALT=10
+SECRET=AkuCintaKucing
+CLIENT_ID=825314680289-d9kvhcbujn53ksgof9648uen072rokmi

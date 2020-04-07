@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "**Base URL: http://localhost:3000**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon bin/http.js",
+    "start": "node bin/http.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andradhandra/kanban_server.git"
+  },
+  "keywords": [],
+  "author": "Ridza Adhandra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andradhandra/kanban_server/issues"
+  },
+  "homepage": "https://github.com/andradhandra/kanban_server#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "socket.io": "^2.3.0"
+  }
+}
